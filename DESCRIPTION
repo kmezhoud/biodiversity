@@ -7,12 +7,10 @@ Description: biodiversity is a Shiny App for tracking species on the world
 Depends:
   R (>= 3.6.0)
 Imports:
-shiny,
-shinytheme,
-shinyWidgets,
-shinyjs,
-shinyAce,
-shinyFiles
+  shiny,
+  shinythemes,
+  leaflet,
+  geojsonio
 VignetteBuilder: 
   knitr
 URL: http://kmezhoud.github.io/biodiversity

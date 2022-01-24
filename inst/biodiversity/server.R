@@ -7,7 +7,7 @@ shinyServer(function(input, output, session) {
     print("Finished.")
   })
   
-  source("global.R")
-  
-
+  source("global.R", encoding = "UTF-8", local = TRUE)
+  source("frontPage.R", encoding = "UTF-8", local = TRUE)
+  source("frontPage_ui.R", encoding = "UTF-8", local = TRUE)
   })
