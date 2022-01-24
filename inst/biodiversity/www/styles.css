@@ -1,0 +1,108 @@
+input[type="number"] {
+  max-width: 80%;
+  max-height:50%;
+}
+
+div.outer {
+  /*position: fixed;*/
+  top: 400px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Customize fonts */
+body, label, input, button, select { 
+  font-family: 'Helvetica Neue', Helvetica;
+  font-weight: 200;
+}
+h1, h2, h3, h4 { font-weight: 400; }
+
+#controls {
+  /* Appearance */
+  background-color: white;
+  padding: 0 10px 10px 10px;
+  cursor: move;
+  /* Fade out while not hovering */
+  opacity: 0.5;
+  zoom: 0.9;
+  transition: opacity 500ms 1s;
+}
+
+#controls:hover {
+  /* Fade in while hovering */
+  opacity: 0.9;
+  transition-delay: 0;
+}
+
+#logo {
+  /* Appearance */
+  background-color: transparent;
+  cursor: move;
+  /* Fade out while not hovering */
+  opacity: 0.25;
+  zoom: 0.9;
+  transition: opacity 500ms 1s;
+}
+
+#logo:hover {
+  /* Fade in while hovering */
+  opacity: 0.95;
+  transition-delay: 0;
+}
+
+/* from bioCancer style.css */
+.well {
+  padding: 4px;
+  margin-bottom: 5px;
+}
+
+body {
+  padding-top: 0px;    /* reduce padding-top from 55 px to 0px  */
+}
+
+.nav-tabs {
+  margin-bottom: 5px;
+}
+
+.navbar {
+  margin-bottom: 5px;
+  /*background-color: black;*/
+}
+
+.navbar .nav > li > a {
+  padding-left: 7px;
+  padding-right: 8px;
+}
+
+.navbar-left,.navbar-right {
+    float: none !important;
+  }
+  
+.panel-default .panel-heading{
+    background: transparent;
+  /*background-color: transparence for header DTOutput;*/
+}
+.panel-default{
+    background: transparent;
+}
+
+.help-modal-dialog{
+  padding-top: 0px;
+  border: 1px solid lightgrey;
+  border-radius: 6px;
+  box-shadow: 1px 1.5px 4px 0px rgba(170, 174, 181, 0.45);
+  /* overflow-y: initial !important */
+}
+
+.help-modal-body {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.modal-sm {
+  padding-top: 80px;
+  width: 600px;
+}
