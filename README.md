@@ -2,7 +2,8 @@
 
 #Keywords
 + Freq: How many time the Spacy was found in different place or date.time
-+ Total: the sum of all individu
++ Total: The sum of all individus
++ User can search by Kingdom class using checkbox panel
 
 #Issues
 + addSearchFeatures highlight multiple circles with same name
