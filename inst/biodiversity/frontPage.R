@@ -21,6 +21,7 @@ output$worldMap <- renderLeaflet({
                   mutate(kingdom = if_else(kingdom == "", "Unknown", kingdom)) %>%
                   mutate(id = as.factor(id))%>%
                   mutate(eventTime = as.ITime(eventTime)) #%>%
+                  #mutate(accessURI = if_else(is.na(accessURI), references, accessURI))
                  #mutate(royaume = if_else(kingdom == "Animalia", "Animal", "Plant"))
 
   
@@ -94,7 +95,35 @@ output$worldMap <- renderLeaflet({
                      color = ~pal(kingdom),
                      stroke = FALSE,
                      radius = ~sqrt(poland_data_Animalia$Freq_family),
-                     popup = ~vernacularName, label = ~higherClassification #scientificName
+                     #popup = ~vernacularName, 
+                     popup = sprintf("
+                              Kingdom: <strong>%s</strong>  <br/>
+                              Sc.Name: <strong>%s</strong> <br/>
+                              Ver.Name: <strong>%s</strong> <br/>
+                              Family: <strong>%s</strong> <br/>
+                              Count: <strong>%g</strong> <br/>
+                              Date: <strong>%s</strong> <br/>
+                              Ref.: <strong> <a href = %s> Link </a> </strong> <br/>",
+                                     poland_data_Animalia$kingdom,
+                                     poland_data_Animalia$scientificName,
+                                     poland_data_Animalia$vernacularName,
+                                     poland_data_Animalia$family,
+                                     poland_data_Animalia$individualCount,
+                                     as.character(poland_data_Animalia$eventDate),
+                                     poland_data_Animalia$references)%>%lapply(htmltools::HTML),
+                     # popupOptions = labelOptions(
+                     #   style = list("font-weight" = "normal", padding = "3px 8px", "color" = "#277a91", "font-family" = "arial",
+                     #                "font-size" = "14px", direction = "auto","box-shadow" = "3px 3px rgba(0,0,0,0.25)")),
+                     label = sprintf("
+                              <img src= %s width='400'/>  <br/>
+                              Sc.Name: <strong>%s</strong> <br/>
+                              Ver.Name: <strong>%s</strong> <br/>",
+                                     poland_data_Animalia$accessURI,
+                                     poland_data_Animalia$scientificName,
+                                     poland_data_Animalia$vernacularName)%>%lapply(htmltools::HTML),
+                     labelOptions = labelOptions(
+                       style = list("font-weight" = "normal", padding = "3px 8px", "color" = "#277a91", "font-family" = "arial",
+                                    "font-size" = "14px", direction = "auto","box-shadow" = "3px 3px rgba(0,0,0,0.25)"))
 
 
 
@@ -138,7 +167,7 @@ output$worldMap <- renderLeaflet({
     
     leaflet.extras::addResetMapButton() %>%
     leaflet.extras::addSearchFeatures(
-      targetGroups = 'kingdom',
+      targetGroups = c("Animalia","Plantae","Fungi","Unknown"),
       options = leaflet.extras::searchFeaturesOptions(
         zoom=12, openPopup = TRUE, firstTipSubmit = TRUE,
         autoCollapse = TRUE, hideMarkerOnCollapse = TRUE )) 
