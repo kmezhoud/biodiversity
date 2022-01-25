@@ -11,7 +11,7 @@ library(biodiversity)
 biodiversity()
 ```
 
-<img src="inst/biodiversity/www/screenshot.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="600" style="padding: 0 0 10px 10px;" />
+<img src="inst/biodiversity/www/screenshot.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="300" style="padding: 0 0 10px 10px;" /> <img src="biodiversity.gif" align="left" alt="https://github.com/kmezhoud/biodiversity" width="300" style="padding: 0 0 10px 10px;" />
 
 # Keywords
 + Freq: How many time the Spacy was found in different place or date.time
