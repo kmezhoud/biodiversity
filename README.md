@@ -1,6 +1,8 @@
-# mobi100c <img src=" biodiversity/inst/biodiversity/www/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
+---
+output: github_document
+---
 
-# biodiversity Map Tracker
+# biodiversity Map Tracker <img src=" biodiversity/inst/biodiversity/www/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
 
 # Keywords
 + Freq: How many time the Spacy was found in different place or date.time
