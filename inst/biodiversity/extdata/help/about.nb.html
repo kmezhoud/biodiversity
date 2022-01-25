@@ -11,7 +11,7 @@
 
 
 
-<title>R Notebook</title>
+<title>Shiny Developer Challenge @Appsilon</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1804,19 +1804,82 @@ summary {
 
 
 
-<h1 class="title toc-ignore">R Notebook</h1>
+<h1 class="title toc-ignore">Shiny Developer Challenge <span class="citation">@Appsilon</span></h1>
 
 </div>
 
 
-<p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
-<p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Cmd+Shift+Enter</em>.</p>
-<pre class="{r}"><code>plot(cars)</code></pre>
-<p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Cmd+Option+I</em>.</p>
-<p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Cmd+Shift+K</em> to preview the HTML file).</p>
-<p>The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.</p>
+<p>Using the biodiversity data, <a href="https://drive.google.com/file/d/1l1ymMg-K_xLriFv1b8MgddH851d6n2sU/view?usp=sharing">available</a> here please build a Shiny app that visualizes observed species on the map. Data comes from the <a href="https://www.gbif.org/occurrence/search?dataset_key=8a863029-f435-446a-821e-275f4f641165">Global Biodiversity Information Facility</a>. We’re primarily interested in how you build the app structure, how you implement the calculation logic and the quality of code. If you have any questions, please be sure to send us an email!</p>
+<div id="main-task" class="section level1">
+<h1>Main Task</h1>
+<div id="business-requirements" class="section level2">
+<h2>Business requirements</h2>
+<div id="general-overview" class="section level3">
+<h3>General overview:</h3>
+<ul>
+<li><p>Build a dashboard that main purpose is to visualize selected species observations on the map and how often it is observed.</p></li>
+<li><p>Original dataset is large and covers the whole world. Please use only observations from Poland.</p></li>
+</ul>
+</div>
+<div id="specific-requirements" class="section level3">
+<h3>Specific requirements:</h3>
+<ul>
+<li><p>Users should be able to search for species by their vernacularName and scientificName. Search field should return matching names and after selecting one result, the app displays its observations on the map.</p></li>
+<li><p>Users should be able to view a visualization of a timeline when selected species were observed.</p></li>
+<li><p>Default view when no species is selected yet should make sense to the user. It shouldn’t be just an empty map and plot. Please decide what you will display.</p></li>
+</ul>
+</div>
+<div id="optional" class="section level3">
+<h3>Optional</h3>
+<p>Use your creativity and add features that you would like to see in this application.</p>
+</div>
+</div>
+<div id="technical-requirements" class="section level2">
+<h2>Technical Requirements</h2>
+<ul>
+<li><p>Don’t use any scaffolding tools like golem, packer, etc.</p></li>
+<li><p>Add readme that will help potential future developers of this app</p></li>
+<li><p>Deploy the app to shinyapps.io</p></li>
+<li><p>Decompose independent functionalities into shinyModules</p></li>
+<li><p>Add unit tests for the most important functions and cover edge cases.</p></li>
+<li><p>Share your solution using Github with <span class="citation">@appsilon-hiring</span> user. Do not open your repo to the public.</p></li>
+</ul>
+</div>
+</div>
+<div id="extra" class="section level1">
+<h1>EXTRA</h1>
+<p>Below requirements are optional, but you can implement them if you apply for a more Senior role. Please add in the readme, which extra assignments you included in your solution.</p>
+<div id="beautiful-ui-skill" class="section level2">
+<h2>Beautiful UI skill</h2>
+<ul>
+<li>Use CSS and <a href="https://sass-lang.com/">Sass</a> to style your dashboard. Make the dashboard look better than standard Shiny. The visual effect we aim for: <a href="https://demo.appsilon.com/apps/shiny-enterprise-demo/">example 1</a>, <a href="https://demo.appsilon.com/apps/destination_overview/">example 2</a>, <a href="https://demo.appsilon.com/apps/visuarisk/">example 3</a></li>
+</ul>
+</div>
+<div id="performance-optimization-skill" class="section level2">
+<h2>Performance optimization skill</h2>
+<ul>
+<li>Use as big dataset as you can (not only limited to Poland). Make sure your app initializes fast and the search field is fast. Use as many optimization techniques as possible and describe them in readme.</li>
+</ul>
+</div>
+<div id="javascript-skill" class="section level2">
+<h2>JavaScript skill``</h2>
+<ul>
+<li>Use JavaScript to create non-trivial visualization. It can be for example a timeline of selected species observations or additional information about point on the map (e.g. popup with the picture)</li>
+</ul>
+</div>
+<div id="infrastructure-skill" class="section level2">
+<h2>Infrastructure skill</h2>
+<ul>
+<li>Instead of deploying the app to shinyapps.io, please deploy it to your own instance.
+<ul>
+<li>You can use any cloud provider you want (e.g. AWS, Azure, Google Cloud, etc).</li>
+<li>You can use any deployment environment you want (e.g. Shinyproxy, Shiny Server, Connect etc).</li>
+</ul></li>
+</ul>
+</div>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gCgpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ21kK1NoaWZ0K0VudGVyKi4gCgpgYGB7cn0KcGxvdChjYXJzKQpgYGAKCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDbWQrT3B0aW9uK0kqLgoKV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDbWQrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4gCgpUaGUgcHJldmlldyBzaG93cyB5b3UgYSByZW5kZXJlZCBIVE1MIGNvcHkgb2YgdGhlIGNvbnRlbnRzIG9mIHRoZSBlZGl0b3IuIENvbnNlcXVlbnRseSwgdW5saWtlICpLbml0KiwgKlByZXZpZXcqIGRvZXMgbm90IHJ1biBhbnkgUiBjb2RlIGNodW5rcy4gSW5zdGVhZCwgdGhlIG91dHB1dCBvZiB0aGUgY2h1bmsgd2hlbiBpdCB3YXMgbGFzdCBydW4gaW4gdGhlIGVkaXRvciBpcyBkaXNwbGF5ZWQuCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2hpbnkgRGV2ZWxvcGVyIENoYWxsZW5nZSBAQXBwc2lsb24iCm91dHB1dDogaHRtbF9ub3RlYm9vawplZGl0b3Jfb3B0aW9uczogCiAgY2h1bmtfb3V0cHV0X3R5cGU6IGlubGluZQotLS0KClVzaW5nIHRoZSBiaW9kaXZlcnNpdHkgZGF0YSwgW2F2YWlsYWJsZV0oaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xbDF5bU1nLUtfeExyaUZ2MWI4TWdkZEg4NTFkNm4yc1Uvdmlldz91c3A9c2hhcmluZykgaGVyZSBwbGVhc2UgYnVpbGQgYSBTaGlueSBhcHAgdGhhdCB2aXN1YWxpemVzIG9ic2VydmVkIHNwZWNpZXMgb24gdGhlIG1hcC4gRGF0YSBjb21lcyBmcm9tIHRoZSBbR2xvYmFsIEJpb2RpdmVyc2l0eSBJbmZvcm1hdGlvbiBGYWNpbGl0eV0oaHR0cHM6Ly93d3cuZ2JpZi5vcmcvb2NjdXJyZW5jZS9zZWFyY2g/ZGF0YXNldF9rZXk9OGE4NjMwMjktZjQzNS00NDZhLTgyMWUtMjc1ZjRmNjQxMTY1KS4gV2UncmUgcHJpbWFyaWx5IGludGVyZXN0ZWQgaW4gaG93IHlvdSBidWlsZCB0aGUgYXBwIHN0cnVjdHVyZSwgaG93IHlvdSBpbXBsZW1lbnQgdGhlIGNhbGN1bGF0aW9uIGxvZ2ljIGFuZCB0aGUgcXVhbGl0eSBvZiBjb2RlLiBJZiB5b3UgaGF2ZSBhbnkgcXVlc3Rpb25zLCBwbGVhc2UgYmUgc3VyZSB0byBzZW5kIHVzIGFuIGVtYWlsIQoKIyBNYWluIFRhc2sKIyMgQnVzaW5lc3MgcmVxdWlyZW1lbnRzCiMjIyBHZW5lcmFsIG92ZXJ2aWV3OgorIEJ1aWxkIGEgZGFzaGJvYXJkIHRoYXQgbWFpbiBwdXJwb3NlIGlzIHRvIHZpc3VhbGl6ZSBzZWxlY3RlZCBzcGVjaWVzIG9ic2VydmF0aW9ucyBvbiB0aGUgbWFwIGFuZCBob3cgb2Z0ZW4gaXQgaXMgb2JzZXJ2ZWQuCgorIE9yaWdpbmFsIGRhdGFzZXQgaXMgbGFyZ2UgYW5kIGNvdmVycyB0aGUgd2hvbGUgd29ybGQuIFBsZWFzZSB1c2Ugb25seSBvYnNlcnZhdGlvbnMgZnJvbSBQb2xhbmQuCgojIyMgU3BlY2lmaWMgcmVxdWlyZW1lbnRzOgoKKyBVc2VycyBzaG91bGQgYmUgYWJsZSB0byBzZWFyY2ggZm9yIHNwZWNpZXMgYnkgdGhlaXIgdmVybmFjdWxhck5hbWUgYW5kIHNjaWVudGlmaWNOYW1lLiBTZWFyY2ggZmllbGQgc2hvdWxkIHJldHVybiBtYXRjaGluZyBuYW1lcyBhbmQgYWZ0ZXIgc2VsZWN0aW5nIG9uZSByZXN1bHQsIHRoZSBhcHAgZGlzcGxheXMgaXRzIG9ic2VydmF0aW9ucyBvbiB0aGUgbWFwLgoKKyBVc2VycyBzaG91bGQgYmUgYWJsZSB0byB2aWV3IGEgdmlzdWFsaXphdGlvbiBvZiBhIHRpbWVsaW5lIHdoZW4gc2VsZWN0ZWQgc3BlY2llcyB3ZXJlIG9ic2VydmVkLgoKKyBEZWZhdWx0IHZpZXcgd2hlbiBubyBzcGVjaWVzIGlzIHNlbGVjdGVkIHlldCBzaG91bGQgbWFrZSBzZW5zZSB0byB0aGUgdXNlci4gSXQgc2hvdWxkbid0IGJlIGp1c3QgYW4gZW1wdHkgbWFwIGFuZCBwbG90LiBQbGVhc2UgZGVjaWRlIHdoYXQgeW91IHdpbGwgZGlzcGxheS4KCiMjIyBPcHRpb25hbCAKClVzZSB5b3VyIGNyZWF0aXZpdHkgYW5kIGFkZCBmZWF0dXJlcyB0aGF0IHlvdSB3b3VsZCBsaWtlIHRvIHNlZSBpbiB0aGlzIGFwcGxpY2F0aW9uLgoKIyMgVGVjaG5pY2FsIFJlcXVpcmVtZW50cwoKKyBEb24ndCB1c2UgYW55IHNjYWZmb2xkaW5nIHRvb2xzIGxpa2UgZ29sZW0sIHBhY2tlciwgZXRjLgoKKyBBZGQgcmVhZG1lIHRoYXQgd2lsbCBoZWxwIHBvdGVudGlhbCBmdXR1cmUgZGV2ZWxvcGVycyBvZiB0aGlzIGFwcAoKKyBEZXBsb3kgdGhlIGFwcCB0byBzaGlueWFwcHMuaW8KCisgRGVjb21wb3NlIGluZGVwZW5kZW50IGZ1bmN0aW9uYWxpdGllcyBpbnRvIHNoaW55TW9kdWxlcwoKKyBBZGQgdW5pdCB0ZXN0cyBmb3IgdGhlIG1vc3QgaW1wb3J0YW50IGZ1bmN0aW9ucyBhbmQgY292ZXIgZWRnZSBjYXNlcy4KCisgU2hhcmUgeW91ciBzb2x1dGlvbiB1c2luZyBHaXRodWIgd2l0aCBAYXBwc2lsb24taGlyaW5nIHVzZXIuIERvIG5vdCBvcGVuIHlvdXIgcmVwbyB0byB0aGUgcHVibGljLgoKIyBFWFRSQQoKQmVsb3cgcmVxdWlyZW1lbnRzIGFyZSBvcHRpb25hbCwgYnV0IHlvdSBjYW4gaW1wbGVtZW50IHRoZW0gaWYgeW91IGFwcGx5IGZvciBhIG1vcmUgU2VuaW9yIHJvbGUuIFBsZWFzZSBhZGQgaW4gdGhlIHJlYWRtZSwgd2hpY2ggZXh0cmEgYXNzaWdubWVudHMgeW91IGluY2x1ZGVkIGluIHlvdXIgc29sdXRpb24uCgojIyBCZWF1dGlmdWwgVUkgc2tpbGwKCisgVXNlIENTUyBhbmQgW1Nhc3NdKGh0dHBzOi8vc2Fzcy1sYW5nLmNvbS8pIHRvIHN0eWxlIHlvdXIgZGFzaGJvYXJkLiBNYWtlIHRoZSBkYXNoYm9hcmQgbG9vayBiZXR0ZXIgdGhhbiBzdGFuZGFyZCBTaGlueS4gVGhlIHZpc3VhbCBlZmZlY3Qgd2UgYWltIGZvcjogW2V4YW1wbGUgMV0oaHR0cHM6Ly9kZW1vLmFwcHNpbG9uLmNvbS9hcHBzL3NoaW55LWVudGVycHJpc2UtZGVtby8pLCBbZXhhbXBsZSAyXShodHRwczovL2RlbW8uYXBwc2lsb24uY29tL2FwcHMvZGVzdGluYXRpb25fb3ZlcnZpZXcvKSwgW2V4YW1wbGUgM10oaHR0cHM6Ly9kZW1vLmFwcHNpbG9uLmNvbS9hcHBzL3Zpc3Vhcmlzay8pCgojIyBQZXJmb3JtYW5jZSBvcHRpbWl6YXRpb24gc2tpbGwKCisgVXNlIGFzIGJpZyBkYXRhc2V0IGFzIHlvdSBjYW4gKG5vdCBvbmx5IGxpbWl0ZWQgdG8gUG9sYW5kKS4gTWFrZSBzdXJlIHlvdXIgYXBwIGluaXRpYWxpemVzIGZhc3QgYW5kIHRoZSBzZWFyY2ggZmllbGQgaXMgZmFzdC4gVXNlIGFzIG1hbnkgb3B0aW1pemF0aW9uIHRlY2huaXF1ZXMgYXMgcG9zc2libGUgYW5kIGRlc2NyaWJlIHRoZW0gaW4gcmVhZG1lLgoKIyMgSmF2YVNjcmlwdCBza2lsbGBgCgorIFVzZSBKYXZhU2NyaXB0IHRvIGNyZWF0ZSBub24tdHJpdmlhbCB2aXN1YWxpemF0aW9uLiBJdCBjYW4gYmUgZm9yIGV4YW1wbGUgYSB0aW1lbGluZSBvZiBzZWxlY3RlZCBzcGVjaWVzIG9ic2VydmF0aW9ucyBvciBhZGRpdGlvbmFsIGluZm9ybWF0aW9uIGFib3V0IHBvaW50IG9uIHRoZSBtYXAgKGUuZy4gcG9wdXAgd2l0aCB0aGUgcGljdHVyZSkKCiMjIEluZnJhc3RydWN0dXJlIHNraWxsCgorIEluc3RlYWQgb2YgZGVwbG95aW5nIHRoZSBhcHAgdG8gc2hpbnlhcHBzLmlvLCBwbGVhc2UgZGVwbG95IGl0IHRvIHlvdXIgb3duIGluc3RhbmNlLiAKICArIFlvdSBjYW4gdXNlIGFueSBjbG91ZCBwcm92aWRlciB5b3Ugd2FudCAoZS5nLiBBV1MsIEF6dXJlLCBHb29nbGUgQ2xvdWQsIGV0YykuIAogICsgWW91IGNhbiB1c2UgYW55IGRlcGxveW1lbnQgZW52aXJvbm1lbnQgeW91IHdhbnQgKGUuZy4gU2hpbnlwcm94eSwgU2hpbnkgU2VydmVyLCBDb25uZWN0IGV0YykuCgo=</div>
 
 
 
