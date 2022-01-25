@@ -13,7 +13,7 @@ biodiversity()
 
 <img src="inst/biodiversity/www/screenshot.png" align="left" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> <img src="biodiversity.gif" align="left" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
 
-
+<br/>
 
 # Keywords
 + Freq: How many time the Spacy was found in different place or date.time
