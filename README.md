@@ -11,6 +11,8 @@ library(biodiversity)
 biodiversity()
 ```
 
+<img src="inst/biodiversity/www/screenshot.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="600" style="padding: 0 0 10px 10px;" />
+
 # Keywords
 + Freq: How many time the Spacy was found in different place or date.time
 + Total: The sum of all individus
