@@ -2,7 +2,6 @@
 output: github_document
 ---
 
-
 ```{r knitr_config, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -11,3 +10,4 @@ knitr::opts_chunk$set(
 )
 ```
 
+# biodiversity Map Tracker <img src=" biodiversity/inst/biodiversity/www/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
