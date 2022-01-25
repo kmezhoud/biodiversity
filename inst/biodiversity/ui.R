@@ -5,15 +5,7 @@ suppressMessages({
   library(shinythemes)
   library(leaflet)
   require(geojsonio)
-  #library(apexcharter)
-  #library(shinyWidgets)
-  #library(shinyjs)
-  #library(RMariaDB)
 })
-
-# source("frontPage_ui.R", encoding = "UTF-8", local = TRUE)
-# source("frontPage.R", encoding = "UTF-8", local = TRUE)
-
 
 shinyUI(fluidPage(theme = shinytheme("flatly"), title = "Biodiversity", #superhero, flatly
                   # Add CSS files
@@ -40,7 +32,8 @@ shinyUI(fluidPage(theme = shinytheme("flatly"), title = "Biodiversity", #superhe
                                                  withMathJax(includeMarkdown("extdata/help/about.md"))
                                                  #includeHTML("README.html")
                                         ),
-                                        tabPanel("Help", "Blabla", icon = icon("question")), #uiOutput("help_ui")
+                                        tabPanel("Help",  icon = icon("question"),
+                                                 withMathJax(includeMarkdown("extdata/help/help.md"))), #uiOutput("help_ui")
                                         tabPanel(tags$a(
                                           "", href = "https://github.com/kmezhoud/biodiversity/-/issues", target = "_blank",
                                           list(icon("github"), "Report issue")

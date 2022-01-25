@@ -92,5 +92,6 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
 + Loading countries.geojson file makes the app slowly
   + Use simpliest map
 + addSearchFeatures highlight multiple circles with same name
+  + In some case Image not found in app but exists in Link (case red Fox)
 + addSearchFeatures with multiple addCircles groups
-+ All Kingdoms must be checked for the `addSearchFeatures`
+  + All Kingdoms must be checked for the `addSearchFeatures`

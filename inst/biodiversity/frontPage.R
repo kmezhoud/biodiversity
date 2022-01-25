@@ -3,17 +3,17 @@ output$worldMap <- renderLeaflet({
   withProgress(message = 'Loading Map ...', value = 0, {
   ##  Load Map source : https://datahub.io/core/geo-countries#r
   #countries_map <- geojson_read("extdata/countries.geojson", what = "sp")
-  
+  ##  Load map Faster
   countries_map <- geojson_read("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json", what = "sp")
   
 
   })
   withProgress(message = 'Reading File ...', value = 0, {
   ## Load data
-  poland_data <- #fread("extdata/full_data_poland.csv", header = TRUE, showProgress = TRUE) %>%
-                 readRDS("extdata/full_data_poland.rds") %>%
+  poland_data <- fread("extdata/full_data_poland.csv", header = TRUE, showProgress = TRUE) %>%
+                 #readRDS("extdata/full_data_poland.rds") %>%
                  #  #select_if(function(x) !(all(is.na(x)) | all(x==""))) %>%
-                   mutate(eventDate = as.POSIXct(eventDate,format="%Y-%m-%d")) #%>%
+                mutate(eventDate = as.POSIXct(eventDate,format="%Y-%m-%d")) #%>%
                  #  mutate(modified = as.POSIXct(modified,format="%Y/%m/%d")) %>%
                  #  mutate(kingdom = if_else(kingdom == "", "Unknown", kingdom)) %>%
                  #  mutate(id = as.factor(id))%>%
