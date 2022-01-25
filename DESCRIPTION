@@ -3,7 +3,7 @@ Title: Biodiversity Map Tracker
 Version: 1.00.0
 Date: 2022-01-26
 Authors@R: person("Karim", "Mezhoud", role=c("aut", "cre"), email="kmezhoud@gmail.com")
-Description: biodiversity is a Shiny App for tracking species on the world
+Description: biodiversity is a Shiny App for tracking species on the world.
 Depends:
   R (>= 3.6.0)
 Imports:
@@ -15,6 +15,9 @@ Imports:
   leaflet.extras,
   tidyverse,
   data.table
+Suggests:
+    knitr,
+    testthat (>= 2.3.0)
 VignetteBuilder: 
   knitr
 URL: http://kmezhoud.github.io/biodiversity
