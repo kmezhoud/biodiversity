@@ -10,7 +10,9 @@ Imports:
   shiny,
   shinythemes,
   leaflet,
-  geojsonio
+  geojsonio,
+  countrycode,
+  leaflet.extras
 VignetteBuilder: 
   knitr
 URL: http://kmezhoud.github.io/biodiversity
