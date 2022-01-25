@@ -1,6 +1,6 @@
 <!-- README.md is generated from README.Rmd. Please edit that file! -->
 
-# biodiversity Map Tracker <img src=" biodiversity/inst/biodiversity/www/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
+# biodiversity Map Tracker <img src=" inst/biodiversity/www/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
 
 # Keywords
 + Freq: How many time the Spacy was found in different place or date.time
