@@ -1,4 +1,6 @@
 suppressMessages({
+  library(tidyverse)
+  library(data.table)
   library(shiny)
   library(shinythemes)
   library(leaflet)

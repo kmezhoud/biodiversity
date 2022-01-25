@@ -12,7 +12,9 @@ Imports:
   leaflet,
   geojsonio,
   countrycode,
-  leaflet.extras
+  leaflet.extras,
+  tidyverse,
+  data.table
 VignetteBuilder: 
   knitr
 URL: http://kmezhoud.github.io/biodiversity
