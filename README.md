@@ -2,6 +2,15 @@
 
 # biodiversity Map Tracker <img src="inst/biodiversity/www/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
 
+# How to install and run
+
+```r
+require(devtools)
+install_github("kmezhoud/biodiversity")
+library(biodiversity)
+biodiversity()
+```
+
 # Keywords
 + Freq: How many time the Spacy was found in different place or date.time
 + Total: The sum of all individus
