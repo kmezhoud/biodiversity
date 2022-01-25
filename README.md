@@ -35,8 +35,8 @@ biodiversity()
 
 # Deal with occurence.cvs
 
+### locate the column of country
 ```{r}
-# locate the column of country
 read.table(file = "biodiversity-data/occurence.csv", header = TRUE,
               sep = ",", nrows = 1) %>%
   names() %>%
@@ -49,20 +49,20 @@ read.table(file = "biodiversity-data/occurence.csv", header = TRUE,
 ```
 [1] 22 23
 
+### Extract only rows with Poland in column 22 and save it to occurence_poland.csv
 ```{bash}
-## Extract only rows with Poland in column 22 and save it to occurence_poland.csv
 awk -F, '$22 ~ /^Poland/' "biodiversity-data/occurence.csv" > occurence_poland.csv
 ```
 
+### Load only used columns from multimedia
 ```{r}
-# Load only used columns from multimedia
-
 multimedia <- fread("biodiversity-data/multimedia.csv", header = TRUE,
                     select = c("CoreId", "accessURI")) %>%
   rename( id = CoreId) %>%
   mutate(id = as.factor(id))
 ```
 
+### Join Files
 ```{r}
 
 occurence <- fread("occurence_poland.csv", header = TRUE, sep= ',', 
@@ -86,6 +86,7 @@ full_data_poland <- occurence %>%
                     left_join(multimedia, by="id") 
 
 ```
+
 # Issues
 + Loading countries.geojson file makes the app slowly
 + addSearchFeatures highlight multiple circles with same name
