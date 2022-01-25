@@ -4,7 +4,7 @@
 
 # How to install and run
 
-```r
+```{r}
 require(devtools)
 install_github("kmezhoud/biodiversity")
 library(biodiversity)
@@ -32,8 +32,60 @@ biodiversity()
     + External link to orginal data
     + Images
 + CSS styling with logos in header
-    
 
+# Deal with occurence.cvs
+
+```{r}
+# locate the column of country
+read.table(file = "biodiversity-data/occurence.csv", header = TRUE,
+              sep = ",", nrows = 1) %>%
+  names() %>%
+  stringr::str_locate(fixed("country", ignore_case=TRUE) ) %>%
+  as_tibble()%>%
+  tibble::rowid_to_column("index") %>%
+  drop_na() %>%
+  pull(index)
+
+```
+[1] 22 23
+
+```{bash}
+## Extract only rows with Poland in column 22 and save it to occurence_poland.csv
+awk -F, '$22 ~ /^Poland/' "biodiversity-data/occurence.csv" > occurence_poland.csv
+```
+
+```{r}
+# Load only used columns from multimedia
+
+multimedia <- fread("biodiversity-data/multimedia.csv", header = TRUE,
+                    select = c("CoreId", "accessURI")) %>%
+  rename( id = CoreId) %>%
+  mutate(id = as.factor(id))
+```
+
+```{r}
+
+occurence <- fread("occurence_poland.csv", header = TRUE, sep= ',', 
+                   select = c("id", "eventDate", "eventTime", "locality", "kingdom", "family",
+                              "vernacularName", "scientificName", "longitudeDecimal", "individualCount", "latitudeDecimal", "countryCode","references"))
+                              
+occurence <- occurence %>%
+              select_if(function(x) !(all(is.na(x)) | all(x==""))) %>%
+              mutate(eventDate = as.POSIXct(eventDate,format="%Y-%m-%d")) %>%
+              #mutate(modified = as.POSIXct(modified,format="%Y/%m/%d")) %>%
+                tidyr::extract(col = locality, into = c("country", "locality"),
+                             regex =  "([A-Z]+[a-z]+\\s)-(\\s[A-Z]+[a-z]+)",remove = TRUE)  %>%
+               mutate(kingdom = if_else(kingdom == "", "Unknown", kingdom)) %>%
+              mutate(id = as.factor(id), kingdom = as.factor(kingdom),
+                     family = as.factor(family), locality = as.factor(locality),
+                     vernacularName = as.factor(vernacularName),
+                     scientificName = as.factor(scientificName)) 
+
+
+full_data_poland <- occurence %>%
+                    left_join(multimedia, by="id") 
+
+```
 # Issues
 + Loading countries.geojson file makes the app slowly
 + addSearchFeatures highlight multiple circles with same name
