@@ -2,12 +2,16 @@ output$worldMap <- renderLeaflet({
   
   withProgress(message = 'Loading Map ...', value = 0, {
   ##  Load Map source : https://datahub.io/core/geo-countries#r
-  countries_map <- geojson_read("extdata/countries.geojson", what = "sp")
+  #countries_map <- geojson_read("extdata/countries.geojson", what = "sp")
+  
+  countries_map <- geojson_read("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json", what = "sp")
+  
 
   })
   withProgress(message = 'Reading File ...', value = 0, {
   ## Load data
-  poland_data <- fread("extdata/full_data_poland.csv", header = TRUE, showProgress = TRUE) %>%
+  poland_data <- #fread("extdata/full_data_poland.csv", header = TRUE, showProgress = TRUE) %>%
+                 readRDS("extdata/full_data_poland.rds") %>%
                  #  #select_if(function(x) !(all(is.na(x)) | all(x==""))) %>%
                    mutate(eventDate = as.POSIXct(eventDate,format="%Y-%m-%d")) #%>%
                  #  mutate(modified = as.POSIXct(modified,format="%Y/%m/%d")) %>%
@@ -21,12 +25,12 @@ output$worldMap <- renderLeaflet({
   
   withProgress(message = 'Data Processing ...', value = 0, {
   ## Add Iso2C of Countries
-  countries_map@data$countryCode <- countrycode::countrycode(sourcevar = countries_map@data %>% 
-                                                               pull(ISO_A3), 
-                                                             origin = "iso3c",
-                                                             destination = "iso2c",
-                                                             nomatch = NA,
-                                                             warn = FALSE)
+  # countries_map@data$countryCode <- countrycode::countrycode(sourcevar = countries_map@data %>% 
+  #                                                              pull(ISO_A3), 
+  #                                                            origin = "iso3c",
+  #                                                            destination = "iso2c",
+  #                                                            nomatch = NA,
+  #                                                            warn = FALSE)
   
   #countries_map@data <- countries_map@data %>%
   #                     left_join(poland_data , by ="countryCode")
@@ -239,7 +243,7 @@ output$worldMap <- renderLeaflet({
     leaflet.extras::addSearchFeatures(
       targetGroups = list("Animalia", "Plantae",
                           "Fungi", "Unknown"),
-      options = searchFeaturesOptions(
+      options = leaflet.extras::searchFeaturesOptions(
                                propertyName = "label",
                                zoom = 12, openPopup = TRUE, firstTipSubmit = FALSE,
                            autoCollapse = FALSE, hideMarkerOnCollapse = TRUE )) %>%

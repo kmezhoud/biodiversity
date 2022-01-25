@@ -23,8 +23,8 @@ biodiversity()
   + Build/Check/Test package
 + Add Progressbar to inform the user what the app is doing
 + Add a Layout control panel for existing Kingdom
-  + Rapid Overview of the position of Animals, PLants and Others
-  + User can focus search on `Plantae` by checking Plantae
+  + Rapid Overview of the position of Animals, Plants and Others
+  + User can focus search by Kingdom
 + User can search by `vernacularName`, the app returns `scientificName` and vice versa.
 + Map Focusing process of selected item to the position
   + Indicate the position with red circle
@@ -33,9 +33,9 @@ biodiversity()
     + Images
 + CSS styling with logos in header
 
-# Deal with occurence.cvs
+# Deal with occurence.cvs and multimedia.csv
 
-### locate the column of country
+### Locate the column of country
 ```{r}
 read.table(file = "biodiversity-data/occurence.csv", header = TRUE,
               sep = ",", nrows = 1) %>%
@@ -85,10 +85,12 @@ occurence <- occurence %>%
 full_data_poland <- occurence %>%
                     left_join(multimedia, by="id") 
 
+saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds")
 ```
 
 # Issues
 + Loading countries.geojson file makes the app slowly
+  + Use simpliest map
 + addSearchFeatures highlight multiple circles with same name
 + addSearchFeatures with multiple addCircles groups
 + All Kingdoms must be checked for the `addSearchFeatures`
