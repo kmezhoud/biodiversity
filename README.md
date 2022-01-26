@@ -6,7 +6,7 @@
 
 Before to install, please try to [demo](https://kmezhoud.shinyapps.io/biodiversity/) version.
 
-## R
+### R
 
 ```{r}
 require(devtools)
@@ -14,10 +14,10 @@ install_github("kmezhoud/biodiversity")
 library(biodiversity)
 biodiversity()
 ```
-## Docker
+### Docker
 
 ```{bash}
-
+coming ...
 ```
 
 <img src="inst/biodiversity/www/screenshot.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /><img src="biodiversity.gif" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
@@ -26,6 +26,7 @@ biodiversity()
 # Keywords
 + Freq: How many time the Spacy was found in different place or date.time
 + Total: The sum of all individus
++ We can add any needed informations in Popups.
 
 # Skills
 + biodiversity is a complete R package
