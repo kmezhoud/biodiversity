@@ -6,25 +6,41 @@
 
 Before to install, please try to [demo](https://kmezhoud.shinyapps.io/biodiversity/) version.
 
-### R
+### R Environment
 
 ```{r}
 require(devtools)
-install_github("kmezhoud/biodiversity")
+install_github("kmezhoud/biodiversity"
 library(biodiversity)
 biodiversity()
 ```
-### Docker
+### Docker Image
+
+#### How to build Docker Image
+
+Navigate to  where `Dockerfile` and `DESCRIPTION` folder.
 
 ```{bash}
-coming ...
+docker build --tag biodiversity .
+docker tag biodiversity kmezhoud/biodiversity:poland
+docker push kmezhoud/biodiversity:poland
 ```
+#### How to run
+```{bash}
+docker run -d -p  3838:3838 kmezhoud/biodiversity:poland
+
+firefox localhost:3838 
+## view running instance
+#docker ps
+```
+
 <img src="inst/biodiversity/www/popup.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
 <img src="inst/biodiversity/www/screenshot.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
 <img src="biodiversity.gif" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
 
 
-# Skills
+# Extras Skills
+
 + biodiversity is a complete R package
   + Build/Check/Test package
 + Add popup to select interested countries to focus on. 
@@ -41,6 +57,8 @@ coming ...
     + External link to orginal data
     + Images
 + CSS styling with logos in header, Absolute Panel with transparent Button
+
+<br>
 
 # Deal with occurence.cvs and multimedia.csv
 
@@ -112,12 +130,12 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
   + All Kingdoms must be checked for the `addSearchFeatures`
 + Extend the app to others countries by passing the name of countries as an argument `biodiversity(countries = c("Poland", "Germany"))`
   + Not a good idea if we deploy app in server.
-    + Use instead popup with selectInput of countries at the starting.
+    + Use instead popup with `selectInput` of countries at the starting.
 + AddCircles from groups (Fungi and Unknown) that not exist in selected country 
 + The number of Kingdoms in countries is not the same. `addCircles` not working with empty dataframe
 + Display Map after `Ploting...` progressBar takes long time if there are a lot of CircleMarkers
 
-# TO DO
+# To Do
 + Extend countries to Provinces and Localities: improve precision and search.
 + Subset each country in CSV/RDS file /extdata and load only selected countries
 + Map focus and zoom to first selected country
@@ -126,21 +144,21 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
 
 # Cloud Server
 
-The shony App can be deployed in any Cloud service like Digital Ocean or As a Docker Image.
+The shiny App can be deployed in any Cloud service like [DigitalOcean](https://www.digitalocean.com/) or As a Docker Image with Ubuntu server.
 
-It can be protected by a strong security system as in following:
+It can be protected by a strong security system:
 
 + Firewall with iptable and email Alert
 
-+ Reserve Proxy with SLL and Domaine certificate
++ Reserve Proxy with SSL and Domaine certificate
 
-+ Keyring system for sensitive code like: Login detail, IP adress, tables and collumn names
++ Keyring system for sensitive code like: Login detail, IP adress, tables and column names
 
 + IP verification and geo-restrinction
 
-<img src="inst/biodiversity/www/secu_biodiversity.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
+<img src="inst/biodiversity/www/secu_biodiversity.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="600" style="padding: 0 0 10px 10px;" />
 
 
 # Mobile App
 
-The App can be implemented for Smartphone using [F7 framework](https://framework7.io/)
+The App can be implemented for Smartphone using [F7 framework](https://framework7.io/).
