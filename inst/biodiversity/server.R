@@ -17,7 +17,7 @@ shinyServer(function(input, output, session) {
                      choices = c("Poland"), 
                      multiple = TRUE),
       if (failed)
-        div(tags$b("Please, Select countries", style = "color: red;")),
+        div(tags$b("Please, Select Countries", style = "color: red;")),
       
       footer = tagList(
         actionButton("cancel_id","Cancel"),
@@ -29,8 +29,8 @@ shinyServer(function(input, output, session) {
   ## Show the popup
   showModal(popupModal())
   
+  ## Listening OK button
   observeEvent(input$ok, {
-    
     if (!is.null(input$countries_id) && nzchar(input$countries_id)) {
       vals$countries <- input$countries_id
       removeModal()
@@ -39,12 +39,19 @@ shinyServer(function(input, output, session) {
     }
   })
   
+  ## remove popup if cancel
   observeEvent(input$cancel_id, {
       removeModal()
       print("cancel")
       stopApp()
       print("Finished.")
   })
+  
+  # ## reshow popup
+  # observeEvent(input$popup_id,ignoreInit = TRUE,{
+  #   showModal(popupModal())
+  #  
+  # })
   
   source("global.R", encoding = "UTF-8", local = TRUE)
   source("frontPage.R", encoding = "UTF-8", local = TRUE)
