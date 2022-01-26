@@ -114,7 +114,7 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
     + Use instead popup with selectInput of countries at the starting.
   
 # TO DO
-+ Extend countries to Provinces and Localities: improve presition and focus.
++ Extend countries to Provinces and Localities: improve precision and search.
 + Subset each country in CSV/RDS file /extdata and load only selected countries
-+ Map focus and zoom to select country
++ Map focus and zoom to first selected country
 + Dockerize the App
