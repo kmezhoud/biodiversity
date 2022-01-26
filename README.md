@@ -9,6 +9,8 @@ Before to install, please try to [demo](https://kmezhoud.shinyapps.io/biodiversi
 
 <span style="color:red"> **Cannot deploy the App to shinyapp.io with Poland and Switzerland data**</span>
 
+
+<p>Some Markdown text with <span style="color:blue">some <em>blue</em> text</span>.</p>
 ### R
 
 ```{r}
