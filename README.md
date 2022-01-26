@@ -109,7 +109,7 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
 # TO DO
 
 + Extend the app to others countries by passing the name of countries as an argument `biodiversity(countries = c("Poland", "Germany"))`
-  + not a got idea if we deploy app in server.
-  + Use popup with selectInput of countries at the starting
+  + Not a good idea if we deploy app in server.
+    + Use instead popup with selectInput of countries at the starting.
 
 + Dockerize the App

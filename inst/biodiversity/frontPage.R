@@ -1,5 +1,8 @@
 output$worldMap <- renderLeaflet({
   
+  if (is.null(vals$countries)){
+    #"No countries selected"
+  }else{
   withProgress(message = 'Loading Map ...', value = 0, {
   ##  Load Map source : https://datahub.io/core/geo-countries#r
   #countries_map <- geojson_read("extdata/countries.geojson", what = "sp")
@@ -9,8 +12,11 @@ output$worldMap <- renderLeaflet({
 
   })
   withProgress(message = 'Reading File ...', value = 0, {
+    
   ## Load data
   poland_data <- fread("extdata/full_data_poland.csv", header = TRUE, showProgress = TRUE) %>%
+                #filter(country %in% countries) %>%
+                filter(grepl(input$countries_id, country, ignore.case = TRUE)) %>%
                  #readRDS("extdata/full_data_poland.rds") %>%
                  #  #select_if(function(x) !(all(is.na(x)) | all(x==""))) %>%
                 mutate(eventDate = as.POSIXct(eventDate,format="%Y-%m-%d")) #%>%
@@ -20,8 +26,11 @@ output$worldMap <- renderLeaflet({
                  #  mutate(eventTime = as.ITime(eventTime)) #%>%
                  #  #mutate(accessURI = if_else(is.na(accessURI), references, accessURI))
                  # #mutate(royaume = if_else(kingdom == "Animalia", "Animal", "Plant"))
-
+print(countries)
+print(dim(poland_data))
+print(nrow(poland_data))
   })
+  
   
   withProgress(message = 'Data Processing ...', value = 0, {
   ## Add Iso2C of Countries
@@ -255,5 +264,5 @@ output$worldMap <- renderLeaflet({
     
   })
   
-  
+  }
 })
