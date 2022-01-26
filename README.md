@@ -95,3 +95,9 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
   + In some case Image not found in app but exists in Link (case red Fox)
 + addSearchFeatures with multiple addCircles groups
   + All Kingdoms must be checked for the `addSearchFeatures`
+  
+# TO DO
+
++ Extend the app to others countries by passing the name of countries as an argument `biodiversity(countries = c("Poland", "Germany"))`
+
++ Dockerize the App

@@ -7,7 +7,9 @@ suppressMessages({
   require(geojsonio)
 })
 
+
 shinyUI(fluidPage(theme = shinytheme("flatly"), title = "Biodiversity", #superhero, flatly
+                    
                   # Add CSS files
                   includeCSS(path = "www/AdminLTE.css"),
                   includeCSS(path = "www/shinydashboard.css"),
@@ -35,7 +37,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"), title = "Biodiversity", #superhe
                                         tabPanel("Help",  icon = icon("question"),
                                                  withMathJax(includeMarkdown("extdata/help/help.md"))), #uiOutput("help_ui")
                                         tabPanel(tags$a(
-                                          "", href = "https://github.com/kmezhoud/biodiversity/-/issues", target = "_blank",
+                                          "", href = "https://github.com/kmezhoud/biodiversity/issues", target = "_blank",
                                           list(icon("github"), "Report issue")
                                         )),
                                         tabPanel(tags$a(
