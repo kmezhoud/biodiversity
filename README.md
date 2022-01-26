@@ -7,7 +7,7 @@
 Before to install, please try to [demo](https://kmezhoud.shinyapps.io/biodiversity/) version.
 
 
-<span style="color:red">some **Cannot deploy the App to shinyapp.io with Poland and Switzerland data** text</span>
+<span style="color:red"> **Cannot deploy the App to shinyapp.io with Poland and Switzerland data**</span>
 
 ### R
 
