@@ -40,7 +40,7 @@ coming ...
   + Open popup with all needed information: 
     + External link to orginal data
     + Images
-+ CSS styling with logos in header
++ CSS styling with logos in header, Absolute Panel with transparent Button
 
 # Deal with occurence.cvs and multimedia.csv
 
