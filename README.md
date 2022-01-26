@@ -4,11 +4,20 @@
 
 # How to install and run
 
+Before to install, please try to [demo](https://kmezhoud.shinyapps.io/biodiversity/) version.
+
+## R
+
 ```{r}
 require(devtools)
 install_github("kmezhoud/biodiversity")
 library(biodiversity)
 biodiversity()
+```
+## Docker
+
+```{bash}
+
 ```
 
 <img src="inst/biodiversity/www/screenshot.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /><img src="biodiversity.gif" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
