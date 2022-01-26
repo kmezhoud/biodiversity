@@ -5,6 +5,7 @@
 # How to install and run
 
 Before to install, please try to [demo](https://kmezhoud.shinyapps.io/biodiversity/) version.
+**Cannot deploy the App to shinyapp.io with Poland and Switzerland data**
 
 ### R
 
@@ -120,5 +121,5 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
 + Extend countries to Provinces and Localities: improve precision and search.
 + Subset each country in CSV/RDS file /extdata and load only selected countries
 + Map focus and zoom to first selected country
-+ Add botton to the map to popup selected countries
++ Add botton to the map to iterate countries selection
 + Dockerize the App
