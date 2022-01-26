@@ -123,3 +123,24 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
 + Map focus and zoom to first selected country
 + Add botton to the map to iterate countries selection
 + Dockerize the App
+
+# Cloud Server
+
+The shony App can be deployed in any Cloud service like Digital Ocean or As a Docker Image.
+
+It can be protected by a strong security system as in following:
+
++ Firewall with iptable and email Alert
+
++ Reserve Proxy with SLL and Domaine certificate
+
++ Keyring system for sensitive code like: Login detail, IP adress, tables and collumn names
+
++ IP verification and geo-restrinction
+
+<img src="inst/biodiversity/www/secu_biodiversity.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
+
+
+# Mobile App
+
+The App can be implemented for Smartphone using [F7 framework](https://framework7.io/)
