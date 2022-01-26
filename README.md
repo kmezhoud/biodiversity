@@ -24,11 +24,6 @@ coming ...
 <img src="biodiversity.gif" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
 
 
-# Keywords
-+ Freq: How many time the Spacy was found in different place or date.time
-+ Total: The sum of all individus
-+ We can add any needed informations in Popups.
-
 # Skills
 + biodiversity is a complete R package
   + Build/Check/Test package
@@ -101,6 +96,11 @@ full_data_poland <- occurence %>%
 
 saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds")
 ```
+
+# Keywords
++ Freq: How many time the Spacy was found in different place or date.time
++ Total: The sum of all individus
++ We can add any needed informations in Popups.
 
 # Issues
 + Loading countries.geojson file makes the app slowly
