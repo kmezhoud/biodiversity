@@ -112,7 +112,10 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
 + Extend the app to others countries by passing the name of countries as an argument `biodiversity(countries = c("Poland", "Germany"))`
   + Not a good idea if we deploy app in server.
     + Use instead popup with selectInput of countries at the starting.
-  
+
++ AddCircles from groups (Fungi and Unknown) that not exist in selected country 
++ The number of Kingdoms in countries is not the same. `addCircles` not working with empty dataframe
+
 # TO DO
 + Extend countries to Provinces and Localities: improve precision and search.
 + Subset each country in CSV/RDS file /extdata and load only selected countries
