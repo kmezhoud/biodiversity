@@ -32,6 +32,9 @@ coming ...
 # Skills
 + biodiversity is a complete R package
   + Build/Check/Test package
++ Add popup to select interested countries to focus on. 
+  + Reduce waiting time and improve reactivity of the App.
+  + Limit functionalities to wanted countries
 + Add Progressbar to inform the user what the app is doing
 + Add a Layout control panel for existing Kingdom
   + Rapid Overview of the position of Animals, Plants and Others
