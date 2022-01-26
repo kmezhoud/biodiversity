@@ -27,11 +27,7 @@ docker push kmezhoud/biodiversity:poland
 ```
 #### How to run
 ```{bash}
-docker run -d -p  3838:3838 kmezhoud/biodiversity:poland
-
-firefox localhost:3838 
-## view running instance
-#docker ps
+ 
 ```
 
 <img src="inst/biodiversity/www/popup.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
