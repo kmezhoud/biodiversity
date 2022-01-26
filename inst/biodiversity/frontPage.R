@@ -14,21 +14,19 @@ output$worldMap <- renderLeaflet({
   withProgress(message = 'Reading File ...', value = 0, {
     
   ## Load data
-  poland_data <- fread("extdata/full_data_poland.csv", header = TRUE, showProgress = TRUE) %>%
-                #filter(country %in% countries) %>%
-                filter(grepl(input$countries_id, country, ignore.case = TRUE)) %>%
-                 #readRDS("extdata/full_data_poland.rds") %>%
-                 #  #select_if(function(x) !(all(is.na(x)) | all(x==""))) %>%
-                mutate(eventDate = as.POSIXct(eventDate,format="%Y-%m-%d")) #%>%
-                 #  mutate(modified = as.POSIXct(modified,format="%Y/%m/%d")) %>%
+  poland_data <- #readRDS("extdata/full_data_poland.rds") %>%
+                 #mutate(eventDate = format(as.POSIXct(eventDate,format="%Y-%m-%d %H:%M:%S"), '%Y-%m-%d')) %>%
+               fread("extdata/full_data_poland.csv", header = TRUE, showProgress = TRUE) %>%
+                mutate(eventDate = format(as.POSIXct(eventDate,format="%Y-%m-%dT%H:%M:%S"), '%Y-%m-%d'))%>%
+                filter(grepl(paste0(input$countries_id, collapse = "|"), country, ignore.case = TRUE))%>% 
+                #select_if(function(x) !(all(is.na(x)) | all(x==""))) %>%
+                mutate(eventDate = as.POSIXct(eventDate,format="%Y-%m-%d")) #%>
+                #  mutate(modified = as.POSIXct(modified,format="%Y/%m/%d")) %>%
                  #  mutate(kingdom = if_else(kingdom == "", "Unknown", kingdom)) %>%
                  #  mutate(id = as.factor(id))%>%
                  #  mutate(eventTime = as.ITime(eventTime)) #%>%
                  #  #mutate(accessURI = if_else(is.na(accessURI), references, accessURI))
                  # #mutate(royaume = if_else(kingdom == "Animalia", "Animal", "Plant"))
-print(countries)
-print(dim(poland_data))
-print(nrow(poland_data))
   })
   
   
@@ -89,7 +87,10 @@ print(nrow(poland_data))
     
     addTiles() %>% 
     
+    ##for Poland only
     setView(lng= 20, lat=52, zoom  = 5.5 )%>%
+    ## for Poland and Switzerland
+    #setView(lng= 18, lat=52, zoom  = 5.5 )%>%
     
     addProviderTiles(providers$Esri.WorldGrayCanvas, #CartoDB.DarkMatter, #  providers$CartoDB.Positron,
                      providerTileOptions(detectRetina = TRUE,
@@ -108,12 +109,12 @@ print(nrow(poland_data))
     ## add Animalia Circles
     addCircles(data = poland_data_Animalia, lat = ~ latitudeDecimal ,
                      lng = ~ longitudeDecimal, #layerId = ~circle_pt,
-                     fillOpacity = 0.5 , 
+                     fillOpacity = 0.5 ,
                      group = "Animalia",
                      color = ~pal(kingdom),
                      stroke = FALSE,
                      radius = ~sqrt(poland_data_Animalia$Freq_Obs),
-                     #popup = ~vernacularName, 
+                     #popup = ~vernacularName,
                      popup = sprintf("
                               <img src= %s width='100'/>  <br/>
                               Kingdom: <strong>%s</strong>  <br/>
@@ -138,7 +139,7 @@ print(nrow(poland_data))
                      popupOptions = labelOptions(
                        style = list("font-weight" = "normal", padding = "3px 8px", "color" = "#277a91", "font-family" = "arial",
                                     "font-size" = "14px", direction = "auto","box-shadow" = "3px 3px rgba(0,0,0,0.25)")),
-                     label = ~paste(poland_data_Animalia$scientificName, 
+                     label = ~paste(poland_data_Animalia$scientificName,
                                      poland_data_Animalia$vernacularName)
 
 
@@ -146,7 +147,7 @@ print(nrow(poland_data))
     )%>%
     addCircles(data = poland_data_Plantae, lat = ~ latitudeDecimal ,
                      lng = ~ longitudeDecimal, #layerId = ~circle_pt,
-                     fillOpacity = 0.5 , 
+                     fillOpacity = 0.5 ,
                      group = "Plantae",
                      color = ~pal(kingdom),
                      stroke = FALSE,
@@ -175,12 +176,12 @@ print(nrow(poland_data))
                      popupOptions = labelOptions(
                        style = list("font-weight" = "normal", padding = "3px 8px", "color" = "#277a91", "font-family" = "arial",
                                     "font-size" = "14px", direction = "auto","box-shadow" = "3px 3px rgba(0,0,0,0.25)")),
-                    label = ~paste(poland_data_Plantae$scientificName, 
+                    label = ~paste(poland_data_Plantae$scientificName,
                                    poland_data_Plantae$vernacularName)
     )%>%
     addCircles(data = poland_data_Fungi, lat = ~ latitudeDecimal ,
                      lng = ~ longitudeDecimal, #layerId = ~circle_pt,
-                     fillOpacity = 0.5 , 
+                     fillOpacity = 0.5 ,
                      group = "Fungi",
                      color = ~pal(kingdom),
                      stroke = FALSE,
@@ -209,13 +210,13 @@ print(nrow(poland_data))
                       popupOptions = labelOptions(
                         style = list("font-weight" = "normal", padding = "3px 8px", "color" = "#277a91", "font-family" = "arial",
                                      "font-size" = "14px", direction = "auto","box-shadow" = "3px 3px rgba(0,0,0,0.25)")),
-                     label = ~paste(poland_data_Fungi$scientificName, 
+                     label = ~paste(poland_data_Fungi$scientificName,
                                     poland_data_Fungi$vernacularName)
-                     
+
     )%>%
     addCircles(data = poland_data_Unknown, lat = ~ latitudeDecimal ,
                      lng = ~ longitudeDecimal, #layerId = ~circle_pt,
-                     fillOpacity = 0.5 , 
+                     fillOpacity = 0.5 ,
                      group = "Unknown",
                      color = ~pal(kingdom),
                      stroke = FALSE,
@@ -244,7 +245,7 @@ print(nrow(poland_data))
                       popupOptions = labelOptions(
                         style = list("font-weight" = "normal", padding = "3px 8px", "color" = "#277a91", "font-family" = "arial",
                                      "font-size" = "14px", direction = "auto","box-shadow" = "3px 3px rgba(0,0,0,0.25)")),
-                     label = ~paste(poland_data_Unknown$scientificName, 
+                     label = ~paste(poland_data_Unknown$scientificName,
                                     poland_data_Unknown$vernacularName)
      )%>%
     
@@ -256,8 +257,8 @@ print(nrow(poland_data))
                                propertyName = "label",
                                zoom = 12, openPopup = TRUE, firstTipSubmit = FALSE,
                            autoCollapse = FALSE, hideMarkerOnCollapse = TRUE )) %>%
-    addControl("<P><B>Hint!</B> Search for ...<br/><ul><li>Podiceps</li>
-           <li>Stachys</li><li>Lentinus</li><li>Thamnolia</li>
+    addControl("<P><B>Hint!</B> Search for ...<br/><ul><li>Fox-sedge</li>
+           <li>Slow Worm</li><li>Lentinus</li><li>Thamnolia</li>
                </ul></P>",
                position = 'bottomright'
     )

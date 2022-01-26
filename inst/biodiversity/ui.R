@@ -26,7 +26,8 @@ shinyUI(fluidPage(theme = shinytheme("flatly"), title = "Biodiversity", #superhe
                                       div(class="outer",
                                           tags$head(includeCSS("www/styles.css")),
                                           
-                                          uiOutput('ui_frontPage')
+                                          uiOutput('ui_frontPage'),
+                                          uiOutput("combine_panel")
                                       )),
                              
                              navbarMenu("", icon = icon("question-circle"),
