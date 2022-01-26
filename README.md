@@ -6,11 +6,6 @@
 
 Before to install, please try to [demo](https://kmezhoud.shinyapps.io/biodiversity/) version.
 
-
-<span style="color:red"> **Cannot deploy the App to shinyapp.io with Poland and Switzerland data**</span>
-
-
-<p>Some Markdown text with <span style="color:blue">some <em>blue</em> text</span>.</p>
 ### R
 
 ```{r}
@@ -108,6 +103,7 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
 + We can add any needed informations in Popups.
 
 # Issues
++ **Cannot deploy the App to shinyapp.io with Poland and Switzerland data**
 + Loading countries.geojson file makes the app slowly
   + Use simpliest map
 + addSearchFeatures highlight multiple circles with same name
