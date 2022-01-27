@@ -2,7 +2,7 @@
 output: github_document
 ---
 
-```{r knitr_config, echo = FALSE}
+```{r knitr_config, echo = FALSE, collapse=TRUE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
