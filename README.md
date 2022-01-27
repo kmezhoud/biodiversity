@@ -27,7 +27,7 @@ docker push kmezhoud/biodiversity:poland
 ```
 #### How to run
 ```{bash}
- 
+ docker login -u kmezhoud
 ```
 
 <img src="inst/biodiversity/www/popup.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
@@ -56,6 +56,11 @@ docker push kmezhoud/biodiversity:poland
 
 <br>
 
+<br>
+
+<br>
+
+<br>
 # Deal with occurence.cvs and multimedia.csv
 
 ### Locate the column of country
