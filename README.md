@@ -28,6 +28,10 @@ docker push kmezhoud/biodiversity:poland
 #### How to run
 ```{bash}
  docker login -u kmezhoud
+ # run local
+ # docker run -d -p  3838:3838 kmezhoud/biodiversity
+ # run from dockerHub 
+ docker run -d -p  3838:3838 kmezhoud/biodiversity:poland
 ```
 
 <img src="inst/biodiversity/www/popup.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
