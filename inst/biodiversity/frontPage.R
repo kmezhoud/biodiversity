@@ -89,9 +89,9 @@ output$worldMap <- renderLeaflet({
     
     ##for Poland only
     #setView(lng= 20, lat=52, zoom  = 5.5 )%>%
-    setView(lng= biodiversity_data_Animalia$longitudeDecimal[1],
-            lat=biodiversity_data_Animalia$latitudeDecimal[1]
-            , zoom  = 5.5 )%>%
+    setView(lng= mean(biodiversity_data_Animalia$longitudeDecimal),
+            lat= mean(biodiversity_data_Animalia$latitudeDecimal),
+            zoom  = 5.5 )%>%
     ## for Poland and Switzerland
     #setView(lng= 18, lat=52, zoom  = 5.5 )%>%
     
