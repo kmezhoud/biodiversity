@@ -16,7 +16,7 @@ output$worldMap <- renderLeaflet({
   ## Load data
   poland_data <- #readRDS("extdata/full_data_poland.rds") %>%
                  #mutate(eventDate = format(as.POSIXct(eventDate,format="%Y-%m-%d %H:%M:%S"), '%Y-%m-%d')) %>%
-               fread("extdata/full_data_poland.csv", header = TRUE, showProgress = TRUE) %>%
+               fread("extdata/full_data_poland_Switzerland.csv", header = TRUE, showProgress = TRUE) %>%
                 mutate(eventDate = format(as.POSIXct(eventDate,format="%Y-%m-%dT%H:%M:%S"), '%Y-%m-%d'))%>%
                 filter(grepl(paste0(input$countries_id, collapse = "|"), country, ignore.case = TRUE))%>% 
                 #select_if(function(x) !(all(is.na(x)) | all(x==""))) %>%

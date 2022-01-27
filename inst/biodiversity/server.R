@@ -14,7 +14,7 @@ shinyServer(function(input, output, session) {
   popupModal <- function(failed = FALSE) {
     modalDialog(
       selectizeInput(inputId = "countries_id",  list(icon("globe"), label = tags$b("Select Countries")),
-                     choices = c("Poland"), 
+                     choices = c("Poland", "Switzerland"), 
                      multiple = TRUE),
       if (failed)
         div(tags$b("Please, Select Countries", style = "color: red;")),
