@@ -14,7 +14,7 @@ output$worldMap <- renderLeaflet({
   withProgress(message = 'Reading File ...', value = 0, {
     
   ## Load data
-  poland_data <- #readRDS("extdata/full_data_poland.rds") %>%
+  biodiversity_data <- #readRDS("extdata/full_data_poland.rds") %>%
                  #mutate(eventDate = format(as.POSIXct(eventDate,format="%Y-%m-%d %H:%M:%S"), '%Y-%m-%d')) %>%
                fread("extdata/full_data_poland_Switzerland.csv", header = TRUE, showProgress = TRUE) %>%
                 mutate(eventDate = format(as.POSIXct(eventDate,format="%Y-%m-%dT%H:%M:%S"), '%Y-%m-%d'))%>%
@@ -40,7 +40,7 @@ output$worldMap <- renderLeaflet({
   #                                                            warn = FALSE)
   
   #countries_map@data <- countries_map@data %>%
-  #                     left_join(poland_data , by ="countryCode")
+  #                     left_join(biodiversity_data , by ="countryCode")
   
 
   
@@ -49,7 +49,7 @@ output$worldMap <- renderLeaflet({
                      domain = c("Unknown","Fungi","Animalia", "Plantae"))
   
   # Set radius of circuleMarker
-  radius <- poland_data %>%
+  radius <- biodiversity_data %>%
             group_by(scientificName, family, longitudeDecimal,latitudeDecimal, eventDate, eventTime ) %>%
             summarise(Total_Obs = paste0(sum(individualCount),"=",paste0(individualCount, collapse = "+")),
                       Freq_Obs = seq(n()), 
@@ -59,25 +59,25 @@ output$worldMap <- renderLeaflet({
             ungroup()
   
   # Merge radius with poland data
-  poland_data <- poland_data %>%
+  biodiversity_data <- biodiversity_data %>%
                 left_join(radius, by = c("scientificName","family",
                                          "longitudeDecimal", "latitudeDecimal",
                                          "eventDate", "eventTime"))
   
   
   # used for groups
-  poland_data_Animalia <- poland_data %>%
+  biodiversity_data_Animalia <- biodiversity_data %>%
                           filter(kingdom %in% "Animalia")
   
-  poland_data_Plantae <- poland_data %>%
+  biodiversity_data_Plantae <- biodiversity_data %>%
                          filter(kingdom %in% "Plantae")
   
-  poland_data_Fungi <- poland_data %>%
+  biodiversity_data_Fungi <- biodiversity_data %>%
                         filter(kingdom %in% "Fungi")
-  poland_data_Unknown <- poland_data %>%
+  biodiversity_data_Unknown <- biodiversity_data %>%
                        filter(kingdom %in% "Unknown")
   
-  remove(poland_data)
+  remove(biodiversity_data)
 
   })
   
@@ -88,7 +88,10 @@ output$worldMap <- renderLeaflet({
     addTiles() %>% 
     
     ##for Poland only
-    setView(lng= 20, lat=52, zoom  = 5.5 )%>%
+    #setView(lng= 20, lat=52, zoom  = 5.5 )%>%
+    setView(lng= biodiversity_data_Animalia$longitudeDecimal[1],
+            lat=biodiversity_data_Animalia$latitudeDecimal[1]
+            , zoom  = 5.5 )%>%
     ## for Poland and Switzerland
     #setView(lng= 18, lat=52, zoom  = 5.5 )%>%
     
@@ -107,13 +110,13 @@ output$worldMap <- renderLeaflet({
     addLegend(colors = c("red", "forestgreen", "black",  "blue"), 
               labels = c("Animalia","Plantae", "Fungi" , "Unknown"), opacity = 1) %>%
     ## add Animalia Circles
-    addCircles(data = poland_data_Animalia, lat = ~ latitudeDecimal ,
+    addCircles(data = biodiversity_data_Animalia, lat = ~ latitudeDecimal ,
                      lng = ~ longitudeDecimal, #layerId = ~circle_pt,
                      fillOpacity = 0.5 ,
                      group = "Animalia",
                      color = ~pal(kingdom),
                      stroke = FALSE,
-                     radius = ~sqrt(poland_data_Animalia$Freq_Obs),
+                     radius = ~sqrt(biodiversity_data_Animalia$Freq_Obs),
                      #popup = ~vernacularName,
                      popup = sprintf("
                               <img src= %s width='100'/>  <br/>
@@ -126,32 +129,32 @@ output$worldMap <- renderLeaflet({
                               Date: <strong>%s</strong> <br/>
                               Time: <strong>%s</strong> <br/>
                               Ref.: <strong> <a href = %s> Link </a> </strong> <br/>",
-                                     poland_data_Animalia$accessURI,
-                                     poland_data_Animalia$kingdom,
-                                     poland_data_Animalia$scientificName,
-                                     poland_data_Animalia$vernacularName,
-                                     poland_data_Animalia$family,
-                                     poland_data_Animalia$Freq_Obs,
-                                     poland_data_Animalia$Total_Obs,
-                                     as.character(poland_data_Animalia$eventDate),
-                                     as.character(poland_data_Animalia$eventTime),
-                                     poland_data_Animalia$references)%>%lapply(htmltools::HTML),
+                                     biodiversity_data_Animalia$accessURI,
+                                     biodiversity_data_Animalia$kingdom,
+                                     biodiversity_data_Animalia$scientificName,
+                                     biodiversity_data_Animalia$vernacularName,
+                                     biodiversity_data_Animalia$family,
+                                     biodiversity_data_Animalia$Freq_Obs,
+                                     biodiversity_data_Animalia$Total_Obs,
+                                     as.character(biodiversity_data_Animalia$eventDate),
+                                     as.character(biodiversity_data_Animalia$eventTime),
+                                     biodiversity_data_Animalia$references)%>%lapply(htmltools::HTML),
                      popupOptions = labelOptions(
                        style = list("font-weight" = "normal", padding = "3px 8px", "color" = "#277a91", "font-family" = "arial",
                                     "font-size" = "14px", direction = "auto","box-shadow" = "3px 3px rgba(0,0,0,0.25)")),
-                     label = ~paste(poland_data_Animalia$scientificName,
-                                     poland_data_Animalia$vernacularName)
+                     label = ~paste(biodiversity_data_Animalia$scientificName,
+                                     biodiversity_data_Animalia$vernacularName)
 
 
 
     )%>%
-    addCircles(data = poland_data_Plantae, lat = ~ latitudeDecimal ,
+    addCircles(data = biodiversity_data_Plantae, lat = ~ latitudeDecimal ,
                      lng = ~ longitudeDecimal, #layerId = ~circle_pt,
                      fillOpacity = 0.5 ,
                      group = "Plantae",
                      color = ~pal(kingdom),
                      stroke = FALSE,
-                     radius = ~sqrt(poland_data_Plantae$Freq_Obs),
+                     radius = ~sqrt(biodiversity_data_Plantae$Freq_Obs),
                      popup = sprintf("
                               <img src= %s width='100'/>  <br/>
                               Kingdom: <strong>%s</strong>  <br/>
@@ -163,29 +166,29 @@ output$worldMap <- renderLeaflet({
                               Date: <strong>%s</strong> <br/>
                               Time: <strong>%s</strong> <br/>
                               Ref.: <strong> <a href = %s> Link </a> </strong> <br/>",
-                                     poland_data_Plantae$accessURI,
-                                     poland_data_Plantae$kingdom,
-                                     poland_data_Plantae$scientificName,
-                                     poland_data_Plantae$vernacularName,
-                                     poland_data_Plantae$family,
-                                     poland_data_Plantae$Freq_Obs,
-                                     poland_data_Plantae$Total_Obs,
-                                     as.character(poland_data_Plantae$eventDate),
-                                     as.character(poland_data_Plantae$eventTime),
-                                     poland_data_Plantae$references)%>%lapply(htmltools::HTML),
+                                     biodiversity_data_Plantae$accessURI,
+                                     biodiversity_data_Plantae$kingdom,
+                                     biodiversity_data_Plantae$scientificName,
+                                     biodiversity_data_Plantae$vernacularName,
+                                     biodiversity_data_Plantae$family,
+                                     biodiversity_data_Plantae$Freq_Obs,
+                                     biodiversity_data_Plantae$Total_Obs,
+                                     as.character(biodiversity_data_Plantae$eventDate),
+                                     as.character(biodiversity_data_Plantae$eventTime),
+                                     biodiversity_data_Plantae$references)%>%lapply(htmltools::HTML),
                      popupOptions = labelOptions(
                        style = list("font-weight" = "normal", padding = "3px 8px", "color" = "#277a91", "font-family" = "arial",
                                     "font-size" = "14px", direction = "auto","box-shadow" = "3px 3px rgba(0,0,0,0.25)")),
-                    label = ~paste(poland_data_Plantae$scientificName,
-                                   poland_data_Plantae$vernacularName)
+                    label = ~paste(biodiversity_data_Plantae$scientificName,
+                                   biodiversity_data_Plantae$vernacularName)
     )%>%
-    addCircles(data = poland_data_Fungi, lat = ~ latitudeDecimal ,
+    addCircles(data = biodiversity_data_Fungi, lat = ~ latitudeDecimal ,
                      lng = ~ longitudeDecimal, #layerId = ~circle_pt,
                      fillOpacity = 0.5 ,
                      group = "Fungi",
                      color = ~pal(kingdom),
                      stroke = FALSE,
-                     radius = ~sqrt(poland_data_Fungi$Freq_Obs),
+                     radius = ~sqrt(biodiversity_data_Fungi$Freq_Obs),
                      popup = sprintf("
                               <img src= %s width='100'/>  <br/>
                               Kingdom: <strong>%s</strong>  <br/>
@@ -197,30 +200,30 @@ output$worldMap <- renderLeaflet({
                               Date: <strong>%s</strong> <br/>
                               Time: <strong>%s</strong> <br/>
                               Ref.: <strong> <a href = %s> Link </a> </strong> <br/>",
-                                     poland_data_Fungi$accessURI,
-                                     poland_data_Fungi$kingdom,
-                                     poland_data_Fungi$scientificName,
-                                     poland_data_Fungi$vernacularName,
-                                     poland_data_Fungi$family,
-                                     poland_data_Fungi$Freq_Obs,
-                                     poland_data_Fungi$Total_Obs,
-                                     as.character(poland_data_Fungi$eventDate),
-                                     as.character(poland_data_Fungi$eventTime),
-                                     poland_data_Fungi$references)%>%lapply(htmltools::HTML),
+                                     biodiversity_data_Fungi$accessURI,
+                                     biodiversity_data_Fungi$kingdom,
+                                     biodiversity_data_Fungi$scientificName,
+                                     biodiversity_data_Fungi$vernacularName,
+                                     biodiversity_data_Fungi$family,
+                                     biodiversity_data_Fungi$Freq_Obs,
+                                     biodiversity_data_Fungi$Total_Obs,
+                                     as.character(biodiversity_data_Fungi$eventDate),
+                                     as.character(biodiversity_data_Fungi$eventTime),
+                                     biodiversity_data_Fungi$references)%>%lapply(htmltools::HTML),
                       popupOptions = labelOptions(
                         style = list("font-weight" = "normal", padding = "3px 8px", "color" = "#277a91", "font-family" = "arial",
                                      "font-size" = "14px", direction = "auto","box-shadow" = "3px 3px rgba(0,0,0,0.25)")),
-                     label = ~paste(poland_data_Fungi$scientificName,
-                                    poland_data_Fungi$vernacularName)
+                     label = ~paste(biodiversity_data_Fungi$scientificName,
+                                    biodiversity_data_Fungi$vernacularName)
 
     )%>%
-    addCircles(data = poland_data_Unknown, lat = ~ latitudeDecimal ,
+    addCircles(data = biodiversity_data_Unknown, lat = ~ latitudeDecimal ,
                      lng = ~ longitudeDecimal, #layerId = ~circle_pt,
                      fillOpacity = 0.5 ,
                      group = "Unknown",
                      color = ~pal(kingdom),
                      stroke = FALSE,
-                     radius = ~sqrt(poland_data_Unknown$Freq_Obs),
+                     radius = ~sqrt(biodiversity_data_Unknown$Freq_Obs),
                      popup = sprintf("
                               <img src= %s width='100'/>  <br/>
                               Kingdom: <strong>%s</strong>  <br/>
@@ -232,23 +235,22 @@ output$worldMap <- renderLeaflet({
                               Date: <strong>%s</strong> <br/>
                               Time: <strong>%s</strong> <br/>
                               Ref.: <strong> <a href = %s> Link </a> </strong> <br/>",
-                                     poland_data_Unknown$accessURI,
-                                     poland_data_Unknown$kingdom,
-                                     poland_data_Unknown$scientificName,
-                                     poland_data_Unknown$vernacularName,
-                                     poland_data_Unknown$family,
-                                     poland_data_Unknown$Freq_Obs,
-                                     poland_data_Unknown$Total_Obs,
-                                     as.character(poland_data_Unknown$eventDate),
-                                     as.character(poland_data_Unknown$eventTime),
-                                     poland_data_Unknown$references)%>%lapply(htmltools::HTML),
+                                     biodiversity_data_Unknown$accessURI,
+                                     biodiversity_data_Unknown$kingdom,
+                                     biodiversity_data_Unknown$scientificName,
+                                     biodiversity_data_Unknown$vernacularName,
+                                     biodiversity_data_Unknown$family,
+                                     biodiversity_data_Unknown$Freq_Obs,
+                                     biodiversity_data_Unknown$Total_Obs,
+                                     as.character(biodiversity_data_Unknown$eventDate),
+                                     as.character(biodiversity_data_Unknown$eventTime),
+                                     biodiversity_data_Unknown$references)%>%lapply(htmltools::HTML),
                       popupOptions = labelOptions(
                         style = list("font-weight" = "normal", padding = "3px 8px", "color" = "#277a91", "font-family" = "arial",
                                      "font-size" = "14px", direction = "auto","box-shadow" = "3px 3px rgba(0,0,0,0.25)")),
-                     label = ~paste(poland_data_Unknown$scientificName,
-                                    poland_data_Unknown$vernacularName)
+                     label = ~paste(biodiversity_data_Unknown$scientificName,
+                                    biodiversity_data_Unknown$vernacularName)
      )%>%
-    
     leaflet.extras::addResetMapButton() %>%
     leaflet.extras::addSearchFeatures(
       targetGroups = list("Animalia", "Plantae",
