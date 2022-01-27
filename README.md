@@ -150,7 +150,7 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
 
 # Deploy App using Cloud and Shiny Server
 
-The shiny App can be deployed in any Cloud service like [DigitalOcean](https://www.digitalocean.com/) or As a Docker Image with Ubuntu server.
+The shiny App can be deployed in any Cloud service like [DigitalOcean](https://www.digitalocean.com/) with Ubuntu server.
 
 ```{bash}
 # connect to the remote server
