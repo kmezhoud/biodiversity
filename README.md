@@ -122,12 +122,12 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
 ```
 
 # Keywords
-+ Freq: How many time the Spacy was found in different place or date.time
++ Freq: How many time the species  was found in different place or date.time
 + Total: The sum of all individus
 + We can add any needed informations in Popups.
 
 # Issues
-+ **Cannot deploy the App to shinyapp.io with Poland and Switzerland data**
++ **Cannot deploy the App to shinyapp.io with Poland and Switzerland data**. Github version includes Switzerland.
 + Loading countries.geojson file makes the app slowly
   + Use simpliest map
 + addSearchFeatures highlight multiple circles with same name
