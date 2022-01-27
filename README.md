@@ -20,7 +20,7 @@ biodiversity()
 
 Navigate to  where `Dockerfile` and `DESCRIPTION` folder.
 
-```{bash}
+```{bash, collapse = TRUE}
 docker build --tag biodiversity .
 docker tag biodiversity kmezhoud/biodiversity:poland
 docker push kmezhoud/biodiversity:poland
