@@ -22,16 +22,23 @@ Navigate to  where `Dockerfile` and `DESCRIPTION` folder.
 
 ```{bash}
 docker build --tag biodiversity .
-docker tag biodiversity kmezhoud/biodiversity:poland
-docker push kmezhoud/biodiversity:poland
+docker tag biodiversity kmezhoud/biodiversity:0.1
+docker push kmezhoud/biodiversity:0.1
 ```
 #### How to run
 ```{bash}
  # docker login -u kmezhoud
- # run local
- # docker run -d -p  3838:3838 kmezhoud/biodiversity
+ # run local check navigator at 127.0.0.1:3838
+ # docker run -d -p  3838:3838 kmezhoud/biodiversity:0.1
  # run from dockerHub 
- docker run -d -p  3838:3838 kmezhoud/biodiversity:poland
+ docker run -d -p  3838:3838 kmezhoud/biodiversity:0.1
+ 
+ ## killing container issue
+ ## container_linux.go:392: signaling init process caused "permission denied": unknown
+ ## sudo aa-remove-unknown
+## Removing '/snap/core/11993/usr/lib/snapd/snap-confine'
+## Removing 'docker-default'
+
 ```
 
 <img src="inst/biodiversity/www/popup.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
@@ -58,6 +65,8 @@ docker push kmezhoud/biodiversity:poland
   + Open popup with all needed information: 
     + External link to original data,
     + Images,...
+    + How many times the species has been encountered.
+    + Individual Count in each encounter.
 + CSS styling with logos in header, Absolute Panel with transparent Button
 
 <br>
