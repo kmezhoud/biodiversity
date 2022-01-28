@@ -47,13 +47,15 @@ shinyServer(function(input, output, session) {
       print("Finished.")
   })
   
-  # ## reshow popup
-  # observeEvent(input$popup_id,ignoreInit = TRUE,{
-  #   showModal(popupModal())
-  #  
-  # })
+   ## iterate popup button  when we want to select others countries
+   observeEvent(input$popup_id,ignoreInit = TRUE,{
+    #updateActionButton(inputId = "popup_id", session = session)
+     vals$countries <- NULL
+    showModal(popupModal())
+
+  })
   
-  source("global.R", encoding = "UTF-8", local = TRUE)
+  #source("global.R", encoding = "UTF-8", local = TRUE)
   source("frontPage.R", encoding = "UTF-8", local = TRUE)
   source("frontPage_ui.R", encoding = "UTF-8", local = TRUE)
   })

@@ -60,9 +60,9 @@ output$worldMap <- renderLeaflet({
   
   # Merge radius with poland data
   biodiversity_data <- biodiversity_data %>%
-                left_join(radius, by = c("scientificName","family",
-                                         "longitudeDecimal", "latitudeDecimal",
-                                         "eventDate", "eventTime"))
+                        left_join(radius, by = c("scientificName","family",
+                                                  "longitudeDecimal", "latitudeDecimal",
+                                                    "eventDate", "eventTime"))
   
   
   # used for groups

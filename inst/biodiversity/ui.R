@@ -4,7 +4,8 @@ suppressMessages({
   library(shiny)
   library(shinythemes)
   library(leaflet)
-  require(geojsonio)
+  library(leaflet.extras)
+  library(geojsonio)
 })
 
 

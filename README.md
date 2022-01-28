@@ -50,6 +50,8 @@ docker push kmezhoud/biodiversity:0.1
 
 + biodiversity is a complete R package
   + Build/Check/Test package
++ Docker container is available.
++ Extend search to Poland and Switzerland. Other is coming...
 + Add popup to select interested countries to focus on. 
   + Reduce waiting time and improve reactivity of the App.
   + Limit functionalities to wanted countries
@@ -67,6 +69,7 @@ docker push kmezhoud/biodiversity:0.1
     + Images,...
     + How many times the species has been encountered.
     + Individual Count in each encounter.
++ Button to iterate search if user want to change/select other countries
 + CSS styling with logos in header, Absolute Panel with transparent Button
 
 <br>
@@ -137,16 +140,17 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
 + We can add any needed informations in Popups.
 
 # Issues
-+ **Cannot deploy the App to shinyapp.io with Poland and Switzerland data**. Github version includes Switzerland.
-+ addSearchFeatures highlight multiple circles with same name
-  + In some case Image not found in app but exists in Link (case red Fox)
+
++ addSearchFeatures highlight multiple circles with same species.
++ In some case Image not found in app but exists in Link (case red Fox)
   + search feature process seems to go to the first matched regex and stop search.
 + addSearchFeatures works if all groups are checked
   + All Kingdoms must be checked for the `addSearchFeatures`
-+ The number of Kingdoms in countries is not the same. For examamle in Czechia there is no Fungi nor Unknown. `addCircles` function for `Fungi` and `Unknown` received empty data.frame which makes error.
++ The number of Kingdoms in countries is not the same. For examaple in Czechia there is no `Fungi` nor `Unknown`. `addCircles` function for `Fungi` and `Unknown` received empty data.frame which makes error.
 + Display Map after `Ploting...` progressBar takes long time if there are a lot of CircleMarkers
   It depends on screen resolution and computer features.
-======
+
+
 + Loading countries.geojson file makes the app slowly [solved]
   + Use simplest map
 + Extend the app to others countries by passing the name of countries as an argument `biodiversity(countries = c("Poland", "Germany"))` [outdated] 
@@ -156,13 +160,6 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
 # To Do
 + Extend countries to Provinces and Localities: improve precision and search.
 + Subset each country in CSV/RDS file /extdata and load only selected countries
-+ Add button to the map to iterate countries selection
-  + After the first popup, the button `OK` remains `TRUE`. 
-  + If with iterate the popup the computing does not wait for OK confirmation.
-  + We need a global reactive value `recativeVales` to shutdown the OK button when we iterate the search. 
-+ Dockerize the App [solved]
-+ Map focus and zoom to first selected country [solved]
-  + Better use the mean of lng and lat of selected countries.
 
 
     
