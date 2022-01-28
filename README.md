@@ -10,7 +10,7 @@ Before to install, please try to [demo](https://kmezhoud.shinyapps.io/biodiversi
 
 ```{r}
 require(devtools)
-install_github("kmezhoud/biodiversity"
+install_github("kmezhoud/biodiversity")
 library(biodiversity)
 biodiversity()
 ```
@@ -27,7 +27,7 @@ docker push kmezhoud/biodiversity:poland
 ```
 #### How to run
 ```{bash}
- docker login -u kmezhoud
+ # docker login -u kmezhoud
  # run local
  # docker run -d -p  3838:3838 kmezhoud/biodiversity
  # run from dockerHub 
@@ -47,15 +47,17 @@ docker push kmezhoud/biodiversity:poland
   + Reduce waiting time and improve reactivity of the App.
   + Limit functionalities to wanted countries
 + Add Progressbar to inform the user what the app is doing
++ Starting Map position focus of the mean(s) of latitude(s) and longitude(s) of selected Countri(es).
+  + User do not need to scroll the map to selected countries.
 + Add a Layout control panel for existing Kingdom
   + Rapid Overview of the position of Animals, Plants and Others
   + User can focus search by Kingdom
 + User can search by `vernacularName`, the app returns `scientificName` and vice versa.
-+ Map Focusing process of selected item to the position
-  + Indicate the position with red circle
++ After searching and selected species from the search engine, the Map  go and Focus on item position with:
+  + Indicate the position with red circle, and
   + Open popup with all needed information: 
-    + External link to orginal data
-    + Images
+    + External link to original data,
+    + Images,...
 + CSS styling with logos in header, Absolute Panel with transparent Button
 
 <br>
@@ -68,7 +70,7 @@ docker push kmezhoud/biodiversity:poland
 
 # Deal with occurence.cvs and multimedia.csv
 
-### Locate the column of country
+### Locate the column of the countries
 ```{r}
 read.table(file = "biodiversity-data/occurence.csv", header = TRUE,
               sep = ",", nrows = 1) %>%
@@ -82,9 +84,9 @@ read.table(file = "biodiversity-data/occurence.csv", header = TRUE,
 ```
 [1] 22 23
 
-### Extract only rows with Poland in column 22 and save it to occurence_poland.csv
+### Extract only rows with Poland and Switzerland in column 22 and save it to occurence_poland_Switezerland.csv
 ```{bash}
-awk -F, '$22 ~ /^Poland/' "biodiversity-data/occurence.csv" > occurence_poland.csv
+awk -F, '$22 ~ /^Poland|Switzerland/' "biodiversity-data/occurence_poland_Switezerland.csv" > occurence_poland.csv
 ```
 
 ### Load only used columns from multimedia
@@ -98,27 +100,26 @@ multimedia <- fread("biodiversity-data/multimedia.csv", header = TRUE,
 ### Join Files
 ```{r}
 
-occurence <- fread("occurence_poland.csv", header = TRUE, sep= ',', 
+occurence <- fread("occurence_poland_Switezerland.csv", header = TRUE, sep= ',', 
                    select = c("id", "eventDate", "eventTime", "locality", "kingdom", "family",
                               "vernacularName", "scientificName", "longitudeDecimal", "individualCount", "latitudeDecimal", "countryCode","references"))
                               
 occurence <- occurence %>%
               select_if(function(x) !(all(is.na(x)) | all(x==""))) %>%
               mutate(eventDate = as.POSIXct(eventDate,format="%Y-%m-%d")) %>%
-              #mutate(modified = as.POSIXct(modified,format="%Y/%m/%d")) %>%
                 tidyr::extract(col = locality, into = c("country", "locality"),
                              regex =  "([A-Z]+[a-z]+\\s)-(\\s[A-Z]+[a-z]+)",remove = TRUE)  %>%
-               mutate(kingdom = if_else(kingdom == "", "Unknown", kingdom)) %>%
+              mutate(kingdom = if_else(kingdom == "", "Unknown", kingdom)) %>%
               mutate(id = as.factor(id), kingdom = as.factor(kingdom),
                      family = as.factor(family), locality = as.factor(locality),
                      vernacularName = as.factor(vernacularName),
                      scientificName = as.factor(scientificName)) 
 
 
-full_data_poland <- occurence %>%
-                    left_join(multimedia, by="id") 
+full_data_polanSwitzerland <- occurence %>%
+                              left_join(multimedia, by="id") 
 
-saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds")
+write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_data_poland_Switzerland.csv")
 ```
 
 # Keywords
@@ -128,18 +129,18 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
 
 # Issues
 + **Cannot deploy the App to shinyapp.io with Poland and Switzerland data**. Github version includes Switzerland.
-+ Loading countries.geojson file makes the app slowly
-  + Use simpliest map
 + addSearchFeatures highlight multiple circles with same name
   + In some case Image not found in app but exists in Link (case red Fox)
 + addSearchFeatures with multiple addCircles groups
   + All Kingdoms must be checked for the `addSearchFeatures`
++ The number of Kingdoms in countries is not the same. `addCircles` not working with empty dataframe
++ Display Map after `Ploting...` progressBar takes long time if there are a lot of CircleMarkers
+======
++ Loading countries.geojson file makes the app slowly
+  + Use simpliest map
 + Extend the app to others countries by passing the name of countries as an argument `biodiversity(countries = c("Poland", "Germany"))`
   + Not a good idea if we deploy app in server.
     + Use instead popup with `selectInput` of countries at the starting.
-+ AddCircles from groups (Fungi and Unknown) that not exist in selected country 
-+ The number of Kingdoms in countries is not the same. `addCircles` not working with empty dataframe
-+ Display Map after `Ploting...` progressBar takes long time if there are a lot of CircleMarkers
 
 # To Do
 + Extend countries to Provinces and Localities: improve precision and search.
@@ -149,6 +150,9 @@ saveRDS(full_data_poland, file = "inst/biodiversity/extdata/full_data_poland.rds
 + Add botton to the map to iterate countries selection
 + Dockerize the App
 
+
+    
+    
 # Deploy App using Cloud and Shiny Server
 
 The shiny App can be deployed in any Cloud service like [DigitalOcean](https://www.digitalocean.com/) with Ubuntu server.
