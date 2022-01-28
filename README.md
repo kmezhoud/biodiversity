@@ -109,7 +109,7 @@ multimedia <- fread("biodiversity-data/multimedia.csv", header = TRUE,
 ### Join Files
 ```{r}
 
-occurence <- fread("occurence_poland_Switezerland.csv", header = TRUE, sep= ',', 
+occurence <- fread("occurence_poland_Switzerland.csv", header = TRUE, sep= ',', 
                    select = c("id", "eventDate", "eventTime", "locality", "kingdom", "family",
                               "vernacularName", "scientificName", "longitudeDecimal", "individualCount", "latitudeDecimal", "countryCode","references"))
                               
@@ -140,27 +140,31 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
 + **Cannot deploy the App to shinyapp.io with Poland and Switzerland data**. Github version includes Switzerland.
 + addSearchFeatures highlight multiple circles with same name
   + In some case Image not found in app but exists in Link (case red Fox)
-+ addSearchFeatures with multiple addCircles groups
+  + search feature process seems to go to the first matched regex and stop search.
++ addSearchFeatures works if all groups are checked
   + All Kingdoms must be checked for the `addSearchFeatures`
-+ The number of Kingdoms in countries is not the same. `addCircles` not working with empty dataframe
++ The number of Kingdoms in countries is not the same. For examamle in Czechia there is no Fungi nor Unknown. `addCircles` function for `Fungi` and `Unknown` received empty data.frame which makes error.
 + Display Map after `Ploting...` progressBar takes long time if there are a lot of CircleMarkers
+  It depends on screen resolution and computer features.
 ======
-+ Loading countries.geojson file makes the app slowly
-  + Use simpliest map
-+ Extend the app to others countries by passing the name of countries as an argument `biodiversity(countries = c("Poland", "Germany"))`
++ Loading countries.geojson file makes the app slowly [solved]
+  + Use simplest map
++ Extend the app to others countries by passing the name of countries as an argument `biodiversity(countries = c("Poland", "Germany"))` [outdated] 
   + Not a good idea if we deploy app in server.
-    + Use instead popup with `selectInput` of countries at the starting.
+    + Use instead popup with `selectInput` of countries at the starting [solved]
 
 # To Do
 + Extend countries to Provinces and Localities: improve precision and search.
 + Subset each country in CSV/RDS file /extdata and load only selected countries
-+ Map focus and zoom to first selected country [OK]
++ Add button to the map to iterate countries selection
+  + After the first popup, the button `OK` remains `TRUE`. 
+  + If with iterate the popup the computing does not wait for OK confirmation.
+  + We need a global reactive value `recativeVales` to shutdown the OK button when we iterate the search. 
++ Dockerize the App [solved]
++ Map focus and zoom to first selected country [solved]
   + Better use the mean of lng and lat of selected countries.
-+ Add botton to the map to iterate countries selection
-+ Dockerize the App
 
 
-    
     
 # Deploy App using Cloud and Shiny Server
 
