@@ -3,7 +3,7 @@ output$worldMap <- renderLeaflet({
   if (is.null(vals$countries)){
     #"No countries selected"
   }else{
-  withProgress(message = 'Loading Map ...', value = 0, {
+  withProgress(message = 'Loading Map ...', value = 20, {
   ##  Load Map source : https://datahub.io/core/geo-countries#r
   #countries_map <- geojson_read("extdata/countries.geojson", what = "sp")
   ##  Load map Faster
@@ -11,16 +11,29 @@ output$worldMap <- renderLeaflet({
   
 
   })
-  withProgress(message = 'Reading File ...', value = 0, {
+  withProgress(message = 'Loading Table ...', value = 10, {
+    
+
+    table_list <- NULL
+    
+    for (i in input$countries_id){
+      #Put each table in the list, one by one
+      table_list[[i]] <- tbl(con,i) %>% as_tibble()
+    }
     
   ## Load data
-  biodiversity_data <- #readRDS("extdata/full_data_poland.rds") %>%
-                 #mutate(eventDate = format(as.POSIXct(eventDate,format="%Y-%m-%d %H:%M:%S"), '%Y-%m-%d')) %>%
-               fread("extdata/full_data_poland_Switzerland.csv", header = TRUE, showProgress = TRUE) %>%
-                mutate(eventDate = format(as.POSIXct(eventDate,format="%Y-%m-%dT%H:%M:%S"), '%Y-%m-%d'))%>%
+  biodiversity_data <- table_list %>% 
+                        rbindlist() %>%
                 filter(grepl(paste0(input$countries_id, collapse = "|"), country, ignore.case = TRUE))%>% 
+                 mutate(eventDate = format(as.POSIXct(eventDate,format="%Y-%m-%dT%H:%M:%S"), '%Y-%m-%d'),
+                        individualCount = as.numeric(individualCount),
+                        longitudeDecimal = as.numeric(longitudeDecimal),
+                        latitudeDecimal = as.numeric(latitudeDecimal)) 
+                #mutate(eventDate = as.POSIXct(eventDate,format="%Y-%m-%d")) #%>
+                #read_rds("extdata/full_data_Poland_Switzerland.rds") %>%
+               #fread("extdata/full_data_poland_Switzerland.csv", header = TRUE, showProgress = TRUE) %>%
+                #mutate(eventDate = format(as.POSIXct(eventDate,format="%Y-%m-%dT%H:%M:%S"), '%Y-%m-%d'))%>%
                 #select_if(function(x) !(all(is.na(x)) | all(x==""))) %>%
-                mutate(eventDate = as.POSIXct(eventDate,format="%Y-%m-%d")) #%>
                 #  mutate(modified = as.POSIXct(modified,format="%Y/%m/%d")) %>%
                  #  mutate(kingdom = if_else(kingdom == "", "Unknown", kingdom)) %>%
                  #  mutate(id = as.factor(id))%>%
@@ -30,7 +43,7 @@ output$worldMap <- renderLeaflet({
   })
   
   
-  withProgress(message = 'Data Processing ...', value = 0, {
+  withProgress(message = 'Data Processing ...', value = 10, {
   ## Add Iso2C of Countries
   # countries_map@data$countryCode <- countrycode::countrycode(sourcevar = countries_map@data %>% 
   #                                                              pull(ISO_A3), 
@@ -81,7 +94,7 @@ output$worldMap <- renderLeaflet({
 
   })
   
-  withProgress(message = 'Ploting ...', value = 0, {
+  withProgress(message = 'Display The Map ...', value = 20, {
   ## Start the map    
   leaflet(data =  countries_map) %>%  # countries_map
     
@@ -106,18 +119,20 @@ output$worldMap <- renderLeaflet({
       overlayGroups = c("Animalia","Plantae","Fungi",
                         "Unknown"),
       options = layersControlOptions(collapsed = FALSE))%>%
+    ## hide groups
+      #hideGroup(c("Fungi","Unknown")) %>%
     ## add color legend for kingdom
     addLegend(colors = c("red", "forestgreen", "black",  "blue"), 
               labels = c("Animalia","Plantae", "Fungi" , "Unknown"), opacity = 1) %>%
+    
     ## add Animalia Circles
     addCircles(data = biodiversity_data_Animalia, lat = ~ latitudeDecimal ,
-                     lng = ~ longitudeDecimal, #layerId = ~circle_pt,
+                     lng = ~ longitudeDecimal,
                      fillOpacity = 0.5 ,
                      group = "Animalia",
                      color = ~pal(kingdom),
                      stroke = FALSE,
                      radius = ~sqrt(biodiversity_data_Animalia$Freq_Obs),
-                     #popup = ~vernacularName,
                      popup = sprintf("
                               <img src= %s width='100'/>  <br/>
                               Kingdom: <strong>%s</strong>  <br/>
@@ -145,9 +160,7 @@ output$worldMap <- renderLeaflet({
                      label = ~paste(biodiversity_data_Animalia$scientificName,
                                      biodiversity_data_Animalia$vernacularName)
 
-
-
-    )%>%
+    ) %>%
     addCircles(data = biodiversity_data_Plantae, lat = ~ latitudeDecimal ,
                      lng = ~ longitudeDecimal, #layerId = ~circle_pt,
                      fillOpacity = 0.5 ,
@@ -268,4 +281,5 @@ output$worldMap <- renderLeaflet({
   })
   
   }
+
 })

@@ -52,6 +52,9 @@ docker push kmezhoud/biodiversity:0.1
   + Build/Check/Test package
 + Docker container is available.
 + Extend search to Poland and Switzerland. Other is coming...
++ Convert csv files to sqlite database.
+  + Faster raed of tables
+  + focus search on selcted tables
 + Add popup to select interested countries to focus on. 
   + Reduce waiting time and improve reactivity of the App.
   + Limit functionalities to wanted countries
@@ -81,6 +84,7 @@ docker push kmezhoud/biodiversity:0.1
 <br>
 
 # Deal with occurence.cvs and multimedia.csv
+
 
 ### Locate the column of the countries
 ```{r}
@@ -133,6 +137,8 @@ full_data_polanSwitzerland <- occurence %>%
 
 write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_data_poland_Switzerland.csv")
 ```
+
+## Convert occcurence.csv and multimedia.csv to sqlite database
 
 # Keywords
 + Freq: How many time the species  was found in different place or date.time

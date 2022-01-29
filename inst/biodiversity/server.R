@@ -2,6 +2,9 @@ shinyServer(function(input, output, session) {
   
   vals <- reactiveValues(countries = NULL)
   
+  ## connect to db
+  con <-  DBI::dbConnect(RSQLite::SQLite(), "extdata/biodiversity.db") 
+  
   ## stop shiny app when browser is closed
   session$onSessionEnded(function() {
     stopApp()
@@ -14,8 +17,12 @@ shinyServer(function(input, output, session) {
   popupModal <- function(failed = FALSE) {
     modalDialog(
       selectizeInput(inputId = "countries_id",  list(icon("globe"), label = tags$b("Select Countries")),
-                     choices = c("Poland", "Switzerland"), 
-                     multiple = TRUE),
+                     choices = list("Europe" = c("Poland", "Switzerland"), 
+                                    "America" = c("Spain", "Germany"),
+                                    "Africa"= c("Fance", " "), 
+                                    "Asia" = c("Germany", " ")
+                                    ), 
+                     multiple = FALSE),
       if (failed)
         div(tags$b("Please, Select Countries", style = "color: red;")),
       
@@ -42,9 +49,8 @@ shinyServer(function(input, output, session) {
   ## remove popup if cancel
   observeEvent(input$cancel_id, {
       removeModal()
-      print("cancel")
+      print("Canceled Search!")
       stopApp()
-      print("Finished.")
   })
   
    ## iterate popup button  when we want to select others countries
@@ -58,4 +64,7 @@ shinyServer(function(input, output, session) {
   #source("global.R", encoding = "UTF-8", local = TRUE)
   source("frontPage.R", encoding = "UTF-8", local = TRUE)
   source("frontPage_ui.R", encoding = "UTF-8", local = TRUE)
+   
+   
+   
   })

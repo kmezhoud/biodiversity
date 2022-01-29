@@ -14,7 +14,9 @@ Imports:
   countrycode,
   leaflet.extras,
   tidyverse,
-  data.table
+  data.table,
+  DBI,
+  RSQLite
 Suggests:
     knitr,
     testthat (>= 2.3.0)

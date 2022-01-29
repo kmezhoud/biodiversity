@@ -6,6 +6,8 @@ suppressMessages({
   library(leaflet)
   library(leaflet.extras)
   library(geojsonio)
+  library(DBI)
+  library(RSQLite)
 })
 
 
