@@ -53,7 +53,7 @@ docker push kmezhoud/biodiversity:0.1
 + Docker container is available.
 + Extend search to Poland and Switzerland. Other is coming...
 + Convert csv files to sqlite database.
-  + Faster raed of tables
+  + Faster read of tables
   + focus search on selcted tables
 + Add popup to select interested countries to focus on. 
   + Reduce waiting time and improve reactivity of the App.
@@ -155,6 +155,10 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
 + The number of Kingdoms in countries is not the same. For examaple in Czechia there is no `Fungi` nor `Unknown`. `addCircles` function for `Fungi` and `Unknown` received empty data.frame which makes error.
 + Display Map after `Ploting...` progressBar takes long time if there are a lot of CircleMarkers.
   + It depends on screen resolution and computer features.
+  
++ Out of memory for shinyapp.io
+<img src="inst/biodiversity/www/out_memory.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
+
 <br>
 + Loading countries.geojson file makes the app slowly [solved]
   + Use simplest map
@@ -163,9 +167,9 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
     + Use instead popup with `selectInput` of countries at the starting [solved]
 
 # To Do
-+ Convert occurence and multimedia file to sqlite database (a table by country).
 + Extend countries to Provinces and Localities: improve precision and search.
-+ Subset each country in CSV/RDS file /extdata and load only selected countries
+  In some case there a lot of locality (example France)
+  <img src="inst/biodiversity/www/locality.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
 
 
     
