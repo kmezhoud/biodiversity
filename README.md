@@ -164,13 +164,13 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
 
 + shinyapp.io is out of memory 
 
-<img src="inst/biodiversity/www/out_memory.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
+<img src="inst/biodiversity/www/out_memory.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
 
 # To Do
 + Extend countries to Provinces and Localities: improve precision and search.
   In some case there a lot of locality (example France)
   
-  <img src="inst/biodiversity/www/locality.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
+  <img src="inst/biodiversity/www/locality.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
 
 
 # Deploy App using Cloud and Shiny Server
