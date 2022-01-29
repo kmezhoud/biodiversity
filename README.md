@@ -155,10 +155,6 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
 + The number of Kingdoms in countries is not the same. For examaple in Czechia there is no `Fungi` nor `Unknown`. `addCircles` function for `Fungi` and `Unknown` received empty data.frame which makes error.
 + Display Map after `Ploting...` progressBar takes long time if there are a lot of CircleMarkers.
   + It depends on screen resolution and computer features.
-  
-+ Out of memory for shinyapp.io
-<img src="inst/biodiversity/www/out_memory.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
-
 <br>
 + Loading countries.geojson file makes the app slowly [solved]
   + Use simplest map
@@ -166,13 +162,17 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
   + Not a good idea if we deploy app in server.
     + Use instead popup with `selectInput` of countries at the starting [solved]
 
++ shinyapp.io is out of memory 
+
+<img src="inst/biodiversity/www/out_memory.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
+
 # To Do
 + Extend countries to Provinces and Localities: improve precision and search.
   In some case there a lot of locality (example France)
-  <img src="inst/biodiversity/www/locality.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
+  
+  <img src="inst/biodiversity/www/locality.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
 
 
-    
 # Deploy App using Cloud and Shiny Server
 
 The shiny App can be deployed in any Cloud service like [DigitalOcean](https://www.digitalocean.com/) with Ubuntu server.
