@@ -147,10 +147,9 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
 + addSearchFeatures works if all groups are checked
   + All Kingdoms must be checked for the `addSearchFeatures`
 + The number of Kingdoms in countries is not the same. For examaple in Czechia there is no `Fungi` nor `Unknown`. `addCircles` function for `Fungi` and `Unknown` received empty data.frame which makes error.
-+ Display Map after `Ploting...` progressBar takes long time if there are a lot of CircleMarkers
-  It depends on screen resolution and computer features.
-
-
++ Display Map after `Ploting...` progressBar takes long time if there are a lot of CircleMarkers.
+  + It depends on screen resolution and computer features.
+<br>
 + Loading countries.geojson file makes the app slowly [solved]
   + Use simplest map
 + Extend the app to others countries by passing the name of countries as an argument `biodiversity(countries = c("Poland", "Germany"))` [outdated] 
@@ -158,6 +157,7 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
     + Use instead popup with `selectInput` of countries at the starting [solved]
 
 # To Do
++ Convert occurence and multimedia file to sqlite database (a table by country).
 + Extend countries to Provinces and Localities: improve precision and search.
 + Subset each country in CSV/RDS file /extdata and load only selected countries
 
