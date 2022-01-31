@@ -170,7 +170,6 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
    82: origRenderFunc
    81: output$worldMap
     1: runApp
-[1] "Finished."
   ```
   
 + Display Map after `Ploting...` progressBar takes long time if there are a lot of CircleMarkers.
