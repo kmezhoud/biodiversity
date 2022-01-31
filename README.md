@@ -148,6 +148,28 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
 + addSearchFeatures works if all groups are checked
   + All Kingdoms must be checked for the `addSearchFeatures`
 + The number of Kingdoms in countries is not the same. For examaple in Czechia there is no `Fungi` nor `Unknown`. `addCircles` function for `Fungi` and `Unknown` received empty data.frame which makes error.
+  + Try `if_else` condition with `%>%` like ` ... %>% {if_else(nrow(biodiversity_data_Animalia)>0, addCiles(...), .)} %>% ...` or `... %>% purrr::when(nrow(biodiversity_data_Animalia)>0, ~addCircles(...), ~.) %>% ... ` .
+  
+  ```{r}
+  Warning: Error in dispatch: argument "map" is missing, with no default
+  114: dispatch
+  113: invokeMethod
+  109: addCircles
+  108: eval
+  107: eval
+  106: purrr::when
+  105: function_list[[i]]
+  104: freduce
+  103: _fseq
+  102: eval
+  101: eval
+   99: %>%
+   95: func [frontPage.R#97]
+   82: origRenderFunc
+   81: output$worldMap
+    1: runApp
+[1] "Finished."
+  ```
 + Display Map after `Ploting...` progressBar takes long time if there are a lot of CircleMarkers.
   + It depends on screen resolution and computer features.
 <br>

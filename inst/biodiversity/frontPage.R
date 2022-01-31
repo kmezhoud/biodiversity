@@ -125,6 +125,8 @@ output$worldMap <- renderLeaflet({
     addLegend(colors = c("red", "forestgreen", "black",  "blue"), 
               labels = c("Animalia","Plantae", "Fungi" , "Unknown"), opacity = 1) %>%
     
+      #{if_else(nrow(biodiversity_data_Animalia)>0, 
+      #purrr::when(nrow(biodiversity_data_Animalia)>0, ~
     ## add Animalia Circles
     addCircles(data = biodiversity_data_Animalia, lat = ~ latitudeDecimal ,
                      lng = ~ longitudeDecimal,
@@ -158,9 +160,11 @@ output$worldMap <- renderLeaflet({
                        style = list("font-weight" = "normal", padding = "3px 8px", "color" = "#277a91", "font-family" = "arial",
                                     "font-size" = "14px", direction = "auto","box-shadow" = "3px 3px rgba(0,0,0,0.25)")),
                      label = ~paste(biodiversity_data_Animalia$scientificName,
-                                     biodiversity_data_Animalia$vernacularName)
+                                     biodiversity_data_Animalia$vernacularName))%>%
 
-    ) %>%
+  #  , ~. )
+  #    , .)} 
+
     addCircles(data = biodiversity_data_Plantae, lat = ~ latitudeDecimal ,
                      lng = ~ longitudeDecimal, #layerId = ~circle_pt,
                      fillOpacity = 0.5 ,
