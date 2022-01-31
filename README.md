@@ -78,12 +78,6 @@ docker push kmezhoud/biodiversity:0.1
 
 <br>
 
-<br>
-
-<br>
-
-<br>
-
 # Deal with occurence.cvs and multimedia.csv
 
 
@@ -163,7 +157,7 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
   + Not a good idea if we deploy app in server.
     + Use instead popup with `selectInput` of countries at the starting [solved]
 
-+ shinyapp.io is out of memory (Poland, Germany, France, Switzerland, Spain)
++ shinyapp.io is out of memory during Plot of  Germany, Spain, France.
 
 <img src="inst/biodiversity/www/out_memory.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
 
