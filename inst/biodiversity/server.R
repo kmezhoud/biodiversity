@@ -18,9 +18,9 @@ shinyServer(function(input, output, session) {
     modalDialog(
       selectizeInput(inputId = "countries_id",  list(icon("globe"), label = tags$b("Select Countries")),
                      choices = list("Europe" = c("Poland", "Switzerland"), 
-                                    "America" = c("Spain", "Germany"),
-                                    "Africa"= c("Fance", " "), 
-                                    "Asia" = c("Germany", " ")
+                                    "America" = c("Spain", "Spain"),
+                                    "Africa"= c("France", "France"), 
+                                    "Asia" = c("Germany", "Germany")
                                     ), 
                      multiple = FALSE),
       if (failed)

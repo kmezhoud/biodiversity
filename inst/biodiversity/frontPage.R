@@ -64,7 +64,7 @@ output$worldMap <- renderLeaflet({
   # Set radius of circuleMarker
   radius <- biodiversity_data %>%
             group_by(scientificName, family, longitudeDecimal,latitudeDecimal, eventDate, eventTime ) %>%
-            summarise(Total_Obs = paste0(sum(individualCount),"=",paste0(individualCount, collapse = "+")),
+            summarise(Total_Obs = paste0(sum(individualCount, na.rm = TRUE),"=",paste0(individualCount, collapse = "+")),
                       Freq_Obs = seq(n()), 
                       Dates = paste0(eventDate, collapse = ","),
                       Times = paste0(eventTime, collapse = ","),
