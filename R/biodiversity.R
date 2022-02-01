@@ -11,7 +11,7 @@
 #'
 #' @name biodiversity
 #' @docType package
-#' @import shiny leaflet leaflet.extras shinythemes
+#' @import shiny leaflet leaflet.extras shinythemes shinydashboard
 #' @import tidyverse data.table leaflet.extras
 #' @importFrom utils installed.packages
 #' @rawNamespace import(geojsonio, except= c(validate))

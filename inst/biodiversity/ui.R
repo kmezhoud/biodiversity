@@ -8,6 +8,7 @@ suppressMessages({
   library(geojsonio)
   library(DBI)
   library(RSQLite)
+  library(shinydashboard)
 })
 
 
@@ -29,8 +30,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"), title = "Biodiversity", #superhe
                                       div(class="outer",
                                           tags$head(includeCSS("www/styles.css")),
                                           
-                                          uiOutput('ui_frontPage'),
-                                          uiOutput("combine_panel")
+                                          uiOutput('ui_frontPage')
                                       )),
                              
                              navbarMenu("", icon = icon("question-circle"),

@@ -1,3 +1,113 @@
+## InfoBox Animalia
+output$ib_animalia <- renderInfoBox({
+
+  if (is.null(vals$countries)){
+    #"No countries selected"
+    infoBox(title = tags$p("Animalia", style = "font-size: 100%;font-weight:bold"), 
+            value = "", 
+            subtitle =  "" , 
+            icon = icon("paw", lib = "font-awesome"), 
+            color = "red")
+  }else{
+
+  n_Animalia <- tbl(con,vals$countries) %>% as_tibble() %>%
+                filter(kingdom %in% "Animalia") %>%
+                group_by(scientificName) %>%
+                summarise(n = n(),.groups = 'drop') %>%
+                ungroup() %>%
+                nrow()
+  
+  infoBox(title = tags$p("Animalia", style = "font-size: 100%;font-weight:bold"), 
+          value = n_Animalia, 
+          subtitle =  vals$countries , 
+          icon = icon("paw", lib = "font-awesome"), 
+          color = "red")
+  }
+})
+
+## InfoBox Plantae
+output$ib_plantae <- renderInfoBox({
+  
+  if (is.null(vals$countries)){
+    #"No countries selected"
+    infoBox(title = tags$p("Plantae", style = "font-size: 100%;font-weight:bold"), 
+            value = "", 
+            subtitle =  "" , 
+            icon = icon("leaf", lib = "font-awesome"), 
+            color = "olive")
+  }else{
+    
+    n_Plantae <- tbl(con,vals$countries) %>% as_tibble() %>%
+      filter(kingdom %in% "Plantae") %>%
+      group_by(scientificName) %>%
+      summarise(n = n(),.groups = 'drop') %>%
+      ungroup() %>%
+      nrow()
+    
+    infoBox(title = tags$p("PLantae", style = "font-size: 100%;font-weight:bold"), 
+            value = n_Plantae, 
+            subtitle =  vals$countries , 
+            icon = icon("leaf", lib = "font-awesome"), 
+            color = "olive")
+  }
+})
+
+
+## InfoBox Fungi
+output$ib_fungi <- renderInfoBox({
+  
+  if (is.null(vals$countries)){
+    #"No countries selected"
+    infoBox(title = tags$p("Fungi", style = "font-size: 100%;font-weight:bold"), 
+            value = "", 
+            subtitle =  "" , 
+            icon = icon("cookie", lib = "font-awesome"), 
+            color = "black")
+  }else{
+    
+    n_Fungi <- tbl(con,vals$countries) %>% as_tibble() %>%
+      filter(kingdom %in% "Fungi") %>%
+      group_by(scientificName) %>%
+      summarise(n = n(),.groups = 'drop') %>%
+      ungroup() %>%
+      nrow()
+    
+    infoBox(title = tags$p("Fungi", style = "font-size: 100%;font-weight:bold"), 
+            value = n_Fungi, 
+            subtitle =  vals$countries , 
+            icon = icon("cookie", lib = "font-awesome"), 
+            color = "black")
+  }
+})
+
+## InfoBox authors
+output$ib_Unknown <- renderInfoBox({
+  
+  if (is.null(vals$countries)){
+    #"No countries selected"
+    infoBox(title = tags$p("Others", style = "font-size: 100%;font-weight:bold"), 
+            value = "", 
+            subtitle =  "" , 
+            icon = icon("question", lib = "font-awesome"), 
+            color = "blue")
+  }else{
+    
+    n_Unknown <- tbl(con,vals$countries) %>% as_tibble() %>%
+      filter(kingdom %in% "Unknown") %>%
+      group_by(scientificName) %>%
+      summarise(n = n(),.groups = 'drop') %>%
+      ungroup() %>%
+      nrow()
+    
+    infoBox(title = tags$p("Others", style = "font-size: 100%;font-weight:bold"), 
+            value = n_Unknown, 
+            subtitle =  vals$countries , 
+            icon = icon("question", lib = "font-awesome"), 
+            color = "blue")
+  }
+})
+
+
 output$worldMap <- renderLeaflet({
   
   if (is.null(vals$countries)){

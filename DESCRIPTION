@@ -9,6 +9,7 @@ Depends:
 Imports:
   shiny,
   shinythemes,
+  shinydashboard,
   leaflet,
   geojsonio,
   countrycode,
