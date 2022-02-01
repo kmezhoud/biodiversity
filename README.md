@@ -52,7 +52,7 @@ docker push kmezhoud/biodiversity:0.1
 + biodiversity is a complete R package
   + Build/Check/Test package
 + Docker container is available.
-+ Extend search to Poland and Switzerland. Other is coming...
++ Extend search to multiple countries: Poland, Switzerland, Germany, France, Spain.
 + Convert csv files to sqlite database.
   + Faster read of tables
   + focus search on selcted tables
@@ -70,10 +70,12 @@ docker push kmezhoud/biodiversity:0.1
   + Indicate the position with red circle, and
   + Open popup with all needed information: 
     + External link to original data,
-    + Images,...
-    + How many times the species has been encountered.
-    + Individual Count in each encounter.
+    + How many times the species has been encountered,
+    + Individual Count in each encounter,
+    + Image,
+    + Link to reference.
 + Button to iterate search if user want to change/select other countries
++ Info Boxes indicating the total of each existing king.
 + CSS styling with logos in header, Absolute Panel with transparent Button
 
 <br>
