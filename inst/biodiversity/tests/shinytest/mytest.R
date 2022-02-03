@@ -1,0 +1,11 @@
+app <- ShinyDriver$new("../../")
+app$snapshotInit("mytest")
+
+app$setInputs(cancel_id = "click")
+app$setInputs(ok = "click")
+app$setInputs(countries_id = "Poland")
+app$setInputs(ok = "click")
+app$setInputs(popup_id = "click")
+app$setInputs(ok = "click")
+app$setInputs(ok = "click")
+app$snapshot()
