@@ -1,6 +1,9 @@
+
+
 shinyServer(function(input, output, session) {
+
   
-  vals <- reactiveValues(countries = NULL)
+  vals <- reactiveValues(countries = NULL) 
   
   ## connect to db
   con <-  DBI::dbConnect(RSQLite::SQLite(), "extdata/biodiversity.db") 
@@ -8,7 +11,7 @@ shinyServer(function(input, output, session) {
   ## stop shiny app when browser is closed
   session$onSessionEnded(function() {
     stopApp()
-    print("Finished.")
+    print("The biodiversity App is closed.")
   })
   
 
@@ -41,6 +44,7 @@ shinyServer(function(input, output, session) {
     if (!is.null(input$countries_id) && nzchar(input$countries_id)) {
       vals$countries <- input$countries_id
       removeModal()
+      print(paste0("NEW QUERY OF: ", input$countries_id))
     } else {
       showModal(popupModal(failed = TRUE))
     }
@@ -60,11 +64,19 @@ shinyServer(function(input, output, session) {
     showModal(popupModal())
 
   })
-  
-  #source("global.R", encoding = "UTF-8", local = TRUE)
-  source("frontPage.R", encoding = "UTF-8", local = TRUE)
-  source("frontPage_ui.R", encoding = "UTF-8", local = TRUE)
    
+   output$performance <- renderUI({
+     #HTML(markdown::markdownToHTML(knit('extdata/help/performance.Rmd', quiet = TRUE)))
+     includeHTML("extdata/help/performance.html")
+   })
+  
+  source("global.R", encoding = "UTF-8", local = TRUE)
+   tic("sourcing frontPage")
+  source("frontPage.R", encoding = "UTF-8", local = TRUE)
+   toc()
+  tic("sourcing frontPage_ui")
+  source("frontPage_ui.R", encoding = "UTF-8", local = TRUE)
+   toc()
    
    
   })

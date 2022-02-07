@@ -9,6 +9,11 @@ suppressMessages({
   library(DBI)
   library(RSQLite)
   library(shinydashboard)
+  library(tictoc)
+  library(memoise)
+  library(promises)
+  library(future)
+  library(knitr)
 })
 
 
@@ -37,6 +42,11 @@ shinyUI(fluidPage(theme = shinytheme("flatly"), title = "Biodiversity", #superhe
                                         tabPanel("About",icon = icon("info"),
                                                  withMathJax(includeMarkdown("extdata/help/about.md"))
                                                  #includeHTML("README.html")
+                                        ),
+                                        tabPanel("Performance",icon = icon("creative-commons-sampling"),
+                                                 #withMathJax(includeMarkdown("extdata/help/performance.Rmd"))
+                                                 #withMathJax("extdata/help/performance.html")
+                                                 uiOutput("performance")
                                         ),
                                         tabPanel("Help",  icon = icon("question"),
                                                  withMathJax(includeMarkdown("extdata/help/help.md"))), #uiOutput("help_ui")

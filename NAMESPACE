@@ -2,9 +2,12 @@
 
 export(biodiversity)
 import(data.table)
+import(future)
 import(geojsonio, except= c(validate))
 import(leaflet)
 import(leaflet.extras)
+import(memoise)
+import(promises)
 import(shiny)
 import(shinydashboard)
 import(shinythemes)

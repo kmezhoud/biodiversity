@@ -12,7 +12,7 @@
 #' @name biodiversity
 #' @docType package
 #' @import shiny leaflet leaflet.extras shinythemes shinydashboard
-#' @import tidyverse data.table leaflet.extras
+#' @import tidyverse data.table memoise promises future
 #' @importFrom utils installed.packages
 #' @rawNamespace import(geojsonio, except= c(validate))
 #' @export

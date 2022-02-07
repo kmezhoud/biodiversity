@@ -17,9 +17,13 @@ Imports:
   tidyverse,
   data.table,
   DBI,
-  RSQLite
+  RSQLite,
+  tictoc,
+  memoise,
+  promises (>= 1.2),
+  future,
+  knitr
 Suggests:
-    knitr,
     testthat (>= 2.3.0)
 VignetteBuilder: 
   knitr
