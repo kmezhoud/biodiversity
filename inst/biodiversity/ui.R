@@ -47,11 +47,11 @@ shinyUI(fluidPage(theme = shinytheme("flatly"), title = "Biodiversity", #superhe
                                                  withMathJax(includeMarkdown("extdata/help/about.md"))
                                                  #includeHTML("README.html")
                                         ),
-                                        tabPanel("Performance",icon = icon("creative-commons-sampling"),
-                                                 #withMathJax(includeMarkdown("extdata/help/performance.Rmd"))
-                                                 #withMathJax("extdata/help/performance.html")
-                                                 uiOutput("performance")
-                                        ),
+                                        # tabPanel("Performance",icon = icon("creative-commons-sampling"),
+                                        #          #withMathJax(includeMarkdown("extdata/help/performance.Rmd"))
+                                        #          #withMathJax("extdata/help/performance.html")
+                                        #          uiOutput("performance")
+                                        # ),
                                         tabPanel("Help",  icon = icon("question"),
                                                  withMathJax(includeMarkdown("extdata/help/help.md"))), #uiOutput("help_ui")
                                         tabPanel(tags$a(

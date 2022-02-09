@@ -65,10 +65,10 @@ shinyServer(function(input, output, session) {
 
   })
    
-   output$performance <- renderUI({
-     #HTML(markdown::markdownToHTML(knit('extdata/help/performance.Rmd', quiet = TRUE)))
-     includeHTML("extdata/help/performance.html")
-   })
+   # output$performance <- renderUI({
+   #   #HTML(markdown::markdownToHTML(knit('extdata/help/performance.Rmd', quiet = TRUE)))
+   #   includeHTML("https://kmezhoud.github.io/learn_by_example/biodiversity_performance/biodiversity_performance.html")
+   # })
   
   source("global.R", encoding = "UTF-8", local = TRUE)
    tic("sourcing frontPage")
