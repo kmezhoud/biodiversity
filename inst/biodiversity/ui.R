@@ -18,6 +18,10 @@ suppressMessages({
 
 
 shinyUI(fluidPage(theme = shinytheme("flatly"), title = "Biodiversity", #superhero, flatly
+                  ## add the icon logo to browser tab
+                  tags$head(
+                    HTML("<title>Biodiversity</title> <link rel='icon' type='image/gif/png' href='biodiversity.png'>")
+                  ),
                     
                   # Add CSS files
                   includeCSS(path = "www/AdminLTE.css"),
