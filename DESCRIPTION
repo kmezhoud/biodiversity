@@ -2,7 +2,7 @@ Package: biodiversity
 Title: Biodiversity Map Tracker
 Version: 1.00.0
 Date: 2023-03-01
-Authors@R: person("Karim", "Mezhoud", role=c("aut", "cre"), email="kmezhoud@gmail.com")
+Authors@R: person("Karim", "Mezhoud", role=c("aut", "cre"), email="kmezhoud@gmail.com", comment = structure("0000-0003-3885-9630", .Names = "ORCID"))
 Description: biodiversity is a Shiny App for tracking species on the world.
 Depends:
   R (>= 3.6.0)
@@ -31,5 +31,5 @@ URL: http://kmezhoud.github.io/biodiversity
 BugReports: https://github.com/kmezhoud/biodiversity/issues
 License: AGPL-3 | file LICENSE
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Encoding: UTF-8
