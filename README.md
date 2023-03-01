@@ -1,32 +1,35 @@
-<!-- README.md is generated from README.Rmd. Please edit that file! -->
 
 # biodiversity Map Tracker <img src="inst/biodiversity/www/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
 
 # How to install and run
 
-Before to install, please try to [demo](https://kmezhoud.shinyapps.io/biodiversity/) version.
+Before to install, please try to
+[demo](https://kmezhoud.shinyapps.io/biodiversity/) version.
 
 ### R Environment
 
-```{r}
+``` r
 require(devtools)
 install_github("kmezhoud/biodiversity")
 library(biodiversity)
 biodiversity()
 ```
+
 ### Docker Image
 
 #### How to build Docker Image
 
-Navigate to  where `Dockerfile` and `DESCRIPTION` folder.
+Navigate to where `Dockerfile` and `DESCRIPTION` folder.
 
-```{bash}
+``` bash
 docker build --tag biodiversity .
 docker tag biodiversity kmezhoud/biodiversity:0.1
 docker push kmezhoud/biodiversity:0.1
 ```
+
 #### How to run
-```{bash}
+
+``` bash
  # docker login -u kmezhoud
  # run local check navigator at 127.0.0.1:3838
  # docker run -d -p  3838:3838 kmezhoud/biodiversity:0.1
@@ -38,53 +41,56 @@ docker push kmezhoud/biodiversity:0.1
  ## sudo aa-remove-unknown
 ## Removing '/snap/core/11993/usr/lib/snapd/snap-confine'
 ## Removing 'docker-default'
-
 ```
 
-<img src="inst/biodiversity/www/popup.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
-<img src="inst/biodiversity/www/database.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
-<img src="inst/biodiversity/www/screenshot.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
+<img src="inst/biodiversity/www/popup.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
+<img src="inst/biodiversity/www/database.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
+<img src="inst/biodiversity/www/screenshot.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
 <img src="biodiversity.gif" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
-
 
 # Extras Skills
 
-+ biodiversity is a complete R package
-  + Build/Check/Test package
-+ Docker container is available.
-+ Extend search to multiple countries: Poland, Switzerland, Germany, France, Spain.
-+ Convert csv files to sqlite database.
-  + Faster read of tables
-  + focus search on selcted tables
-+ Add popup to select interested countries to focus on. 
-  + Reduce waiting time and improve reactivity of the App.
-  + Limit functionalities to wanted countries
-+ Add Progressbar to inform the user what the app is doing
-+ Starting Map position focus of the mean(s) of latitude(s) and longitude(s) of selected Countri(es).
-  + User do not need to scroll the map to selected countries.
-+ Add a Layout control panel for existing Kingdom
-  + Rapid Overview of the position of Animals, Plants and Others
-  + User can focus search by Kingdom
-+ User can search by `vernacularName`, the app returns `scientificName` and vice versa.
-+ After searching and selected species from the search engine, the Map  go and Focus on item position with:
-  + Indicate the position with red circle, and
-  + Open popup with all needed information: 
-    + External link to original data,
-    + How many times the species has been encountered,
-    + Individual Count in each encounter,
-    + Image,
-    + Link to reference.
-+ Button to iterate search if user want to change/select other countries
-+ Info Boxes indicating the total of each existing king.
-+ CSS styling with logos in header, Absolute Panel with transparent Button
+- biodiversity is a complete R package
+  - Build/Check/Test package
+- Docker container is available.
+- Extend search to multiple countries: Poland, Switzerland, Germany,
+  France, Spain.
+- Convert csv files to sqlite database.
+  - Faster read of tables
+  - focus search on selcted tables
+- Add popup to select interested countries to focus on.
+  - Reduce waiting time and improve reactivity of the App.
+  - Limit functionalities to wanted countries
+- Add Progressbar to inform the user what the app is doing
+- Starting Map position focus of the mean(s) of latitude(s) and
+  longitude(s) of selected Countri(es).
+  - User do not need to scroll the map to selected countries.
+- Add a Layout control panel for existing Kingdom
+  - Rapid Overview of the position of Animals, Plants and Others
+  - User can focus search by Kingdom
+- User can search by `vernacularName`, the app returns `scientificName`
+  and vice versa.
+- After searching and selected species from the search engine, the Map
+  go and Focus on item position with:
+  - Indicate the position with red circle, and
+  - Open popup with all needed information:
+    - External link to original data,
+    - How many times the species has been encountered,
+    - Individual Count in each encounter,
+    - Image,
+    - Link to reference.
+- Button to iterate search if user want to change/select other countries
+- Info Boxes indicating the total of each existing king.
+- CSS styling with logos in header, Absolute Panel with transparent
+  Button
 
 <br>
 
 # Deal with occurence.cvs and multimedia.csv
 
-
 ### Locate the column of the countries
-```{r}
+
+``` r
 read.table(file = "biodiversity-data/occurence.csv", header = TRUE,
               sep = ",", nrows = 1) %>%
   names() %>%
@@ -93,17 +99,19 @@ read.table(file = "biodiversity-data/occurence.csv", header = TRUE,
   tibble::rowid_to_column("index") %>%
   drop_na() %>%
   pull(index)
-
 ```
-[1] 22 23
+
+\[1\] 22 23
 
 ### Extract only rows with Poland and Switzerland in column 22 and save it to occurence_poland_Switezerland.csv
-```{bash}
+
+``` bash
 awk -F, '$22 ~ /^Poland|Switzerland/' "biodiversity-data/occurence_poland_Switezerland.csv" > occurence_poland.csv
 ```
 
 ### Load only used columns from multimedia
-```{r}
+
+``` r
 multimedia <- fread("biodiversity-data/multimedia.csv", header = TRUE,
                     select = c("CoreId", "accessURI")) %>%
   rename( id = CoreId) %>%
@@ -111,7 +119,8 @@ multimedia <- fread("biodiversity-data/multimedia.csv", header = TRUE,
 ```
 
 ### Join Files
-```{r}
+
+``` r
 
 occurence <- fread("occurence_poland_Switzerland.csv", header = TRUE, sep= ',', 
                    select = c("id", "eventDate", "eventTime", "locality", "kingdom", "family",
@@ -138,23 +147,30 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
 ## Convert occcurence.csv and multimedia.csv to sqlite database
 
 # Keywords
-+ Freq: How many time the species  was found in different place or date.time
-+ Total: The sum of all individus
-+ We can add any needed informations in Popups.
+
+- Freq: How many time the species was found in different place or
+  date.time
+- Total: The sum of all individus
+- We can add any needed informations in Popups.
 
 # Issues
 
-+ addSearchFeatures highlight multiple circles with same species.
-+ In some case Image not found in app but exists in Link (case red Fox)
-  + search feature process seems to go to the first matched regex and stop search.
-+ addSearchFeatures works if all groups are checked
-  + All Kingdoms must be checked for the `addSearchFeatures`
-+ The number of Kingdoms in countries is not the same. For examaple in Czechia there is no `Fungi` nor `Unknown`. `addCircles` function for `Fungi` and `Unknown` received empty data.frame which makes error.
-  + Try `if_else` condition with `%>%` like
-    + `... %>% {if_else(nrow(biodiversity_data_Animalia)>0, addCiles(...), .)} %>% ...` or
-    + `... %>% purrr::when(nrow(biodiversity_data_Animalia)>0, ~addCircles(...), ~.) %>% ... ` .
-  
-  ```{r}
+- addSearchFeatures highlight multiple circles with same species.
+- In some case Image not found in app but exists in Link (case red Fox)
+  - search feature process seems to go to the first matched regex and
+    stop search.
+- addSearchFeatures works if all groups are checked
+  - All Kingdoms must be checked for the `addSearchFeatures`
+- The number of Kingdoms in countries is not the same. For examaple in
+  Czechia there is no `Fungi` nor `Unknown`. `addCircles` function for
+  `Fungi` and `Unknown` received empty data.frame which makes error.
+  - Try `if_else` condition with `%>%` like
+    - `... %>% {if_else(nrow(biodiversity_data_Animalia)>0, addCiles(...), .)} %>% ...`
+      or
+    - `... %>% purrr::when(nrow(biodiversity_data_Animalia)>0, ~addCircles(...), ~.) %>% ...`
+      .
+
+  ``` r
   Warning: Error in dispatch: argument "map" is missing, with no default
   114: dispatch
   113: invokeMethod
@@ -173,32 +189,34 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
    81: output$worldMap
     1: runApp
   ```
-  
-+ Display Map after `Ploting...` progressBar takes long time if there are a lot of CircleMarkers.
-  + It depends on screen resolution and computer features.
-<br>
-+ Loading countries.geojson file makes the app slowly [solved]
-  + Use simplest map
-+ Extend the app to others countries by passing the name of countries as an argument `biodiversity(countries = c("Poland", "Germany"))` [outdated] 
-  + Not a good idea if we deploy app in server.
-    + Use instead popup with `selectInput` of countries at the starting [solved]
+- Display Map after `Ploting...` progressBar takes long time if there
+  are a lot of CircleMarkers.
+  - It depends on screen resolution and computer features. <br>
+- Loading countries.geojson file makes the app slowly \[solved\]
+  - Use simplest map
+- Extend the app to others countries by passing the name of countries as
+  an argument `biodiversity(countries = c("Poland", "Germany"))`
+  \[outdated\]
+  - Not a good idea if we deploy app in server.
+    - Use instead popup with `selectInput` of countries at the starting
+      \[solved\]
+- shinyapp.io is out of memory during Plot of Germany, Spain, France.
 
-+ shinyapp.io is out of memory during Plot of  Germany, Spain, France.
-
-<img src="inst/biodiversity/www/out_memory.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
+<img src="inst/biodiversity/www/out_memory.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
 
 # To Do
-+ Extend countries to Provinces and Localities: improve precision and search.
-  In some case there a lot of locality (example France)
-  
-  <img src="inst/biodiversity/www/locality.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
 
+- Extend countries to Provinces and Localities: improve precision and
+  search. In some case there a lot of locality (example France)
+
+  <img src="inst/biodiversity/www/locality.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
 
 # Deploy App using Cloud and Shiny Server
 
-The shiny App can be deployed in any Cloud service like [DigitalOcean](https://www.digitalocean.com/) with Ubuntu server.
+The shiny App can be deployed in any Cloud service like
+[DigitalOcean](https://www.digitalocean.com/) with Ubuntu server.
 
-```{bash}
+``` bash
 # connect to the remote server
 ssh remote_username@remote_host
 #add user with root privilege
@@ -245,7 +263,7 @@ sudo su - -c "R -e \"devtools::install_github('kmezhoud/biodiversity')\""
 sudo su - -c "R -e \"install.packages(“/home/kirus/biodiversity.01.tar.gz”, type=”source”)\""
 ```
 
-```{bash}
+``` bash
 #The next step is to change the owner of the package folder
 chown -R shiny:shiny /usr/local/lib/R/site-library/biodiversity/
 # or
@@ -267,22 +285,22 @@ location /biodiversity {
 # check browser at http://192.168.10.1:3838/biodiversity
 ```
 
-
 # Security System
 
 It can be protected by a strong security system:
 
-+ Firewall with iptable and email Alert
+- Firewall with iptable and email Alert
 
-+ Reserve Proxy with SSL and Domaine certificate
+- Reserve Proxy with SSL and Domaine certificate
 
-+ Keyring system for sensitive code like: Login detail, IP adress, tables and column names
+- Keyring system for sensitive code like: Login detail, IP adress,
+  tables and column names
 
-+ IP verification and geo-restrinction
+- IP verification and geo-restrinction
 
 <img src="inst/biodiversity/www/secu_biodiversity.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="600" style="padding: 0 0 10px 10px;" />
 
-
 # Mobile App
 
-The App can be implemented for Smartphone using [F7 framework](https://framework7.io/).
+The App can be implemented for Smartphone using [F7
+framework](https://framework7.io/).
