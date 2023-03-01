@@ -6,11 +6,11 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "inst/biodiversity/www/"
+  fig.path = "Readme.md"
 )
 ```
 
-# biodiversity Map Tracker <img src="inst/biodiversity/www/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
+# biodiversity Map Tracker <img src="vignettes/img/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
 
 # How to install and run
 
@@ -51,9 +51,9 @@ docker push kmezhoud/biodiversity:0.1
 
 ```
 
-<img src="inst/biodiversity/www/popup.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
-<img src="inst/biodiversity/www/database.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
-<img src="inst/biodiversity/www/screenshot.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
+<img src="vignettes/img/popup.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
+<img src="vignettes/img/database.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
+<img src="vignettes/img/screenshot.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
 <img src="biodiversity.gif" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
 
 
@@ -196,13 +196,13 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
 
 + shinyapp.io is out of memory during Plot of  Germany, Spain, France.
 
-<img src="inst/biodiversity/www/out_memory.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
+<img src="vignettes/img/out_memory.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
 
 # To Do
 + Extend countries to Provinces and Localities: improve precision and search.
   In some case there a lot of locality (example France)
   
-  <img src="inst/biodiversity/www/locality.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
+  <img src="vignettes/img/locality.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" /> 
 
 
 # Deploy App using Cloud and Shiny Server
@@ -291,7 +291,7 @@ It can be protected by a strong security system:
 
 + IP verification and geo-restrinction
 
-<img src="inst/biodiversity/www/secu_biodiversity.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="600" style="padding: 0 0 10px 10px;" />
+<img src="vignettes/img/secu_biodiversity.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="600" style="padding: 0 0 10px 10px;" />
 
 
 # Mobile App
