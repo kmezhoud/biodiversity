@@ -20,9 +20,9 @@ Before to install, please try to [demo](https://kmezhoud.shinyapps.io/biodiversi
 
 ```{r, eval=FALSE}
 require(devtools)
-#install_github("kmezhoud/biodiversity")
-#library(biodiversity)
-#biodiversity()
+install_github("kmezhoud/biodiversity")
+library(biodiversity)
+biodiversity()
 ```
 ### Docker Image
 
