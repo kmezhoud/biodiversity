@@ -1,5 +1,5 @@
 
-# biodiversity Map Tracker <img src="vignettes/web_only/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
+# biodiversity Map Tracker <img src="man/figures/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
 
 # How to install and run
 
