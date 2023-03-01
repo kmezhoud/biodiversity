@@ -2,11 +2,11 @@
 output: github_document
 ---
 
-```{r knitr_config, echo = FALSE, collapse=TRUE}
+```{r,  echo = FALSE, collapse=TRUE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "Readme.md"
+  fig.path = "vignettes/only_web/"
 )
 ```
 
