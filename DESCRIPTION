@@ -27,7 +27,8 @@ Suggests:
     testthat (>= 2.3.0)
 VignetteBuilder: 
   knitr
-URL: http://kmezhoud.github.io/biodiversity
+URL: http://kmezhoud.github.io/biodiversity,
+    https://kmezhoud.github.io/biodiversity/
 BugReports: https://github.com/kmezhoud/biodiversity/issues
 License: AGPL-3 | file LICENSE
 LazyData: true

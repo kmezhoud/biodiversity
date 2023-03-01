@@ -4,3 +4,4 @@
 ^docs$
 ^pkgdown$
 ^vignettes/web_only
+^\.github$

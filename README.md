@@ -1,5 +1,5 @@
 
-# biodiversity Map Tracker <img src="vignettes/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
+# biodiversity Map Tracker <img src="vignettes/web_only/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
 
 # How to install and run
 
@@ -43,9 +43,9 @@ docker push kmezhoud/biodiversity:0.1
 ## Removing 'docker-default'
 ```
 
-<img src="vignettes/popup.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
-<img src="vignettes/database.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
-<img src="vignettes/screenshot.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
+<img src="vignettes/web_only/popup.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
+<img src="vignettes/web_only/database.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
+<img src="vignettes/web_only/screenshot.png" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
 <img src="biodiversity.gif" align="right" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
 
 # Extras Skills
@@ -202,14 +202,14 @@ write.csv(full_data_polanSwitzerland, file = "inst/biodiversity/extdata/full_dat
       \[solved\]
 - shinyapp.io is out of memory during Plot of Germany, Spain, France.
 
-<img src="vignettes/out_memory.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
+<img src="vignettes/web_only/out_memory.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
 
 # To Do
 
 - Extend countries to Provinces and Localities: improve precision and
   search. In some case there a lot of locality (example France)
 
-  <img src="vignettes/locality.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
+  <img src="vignettes/web_only/locality.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="400" style="padding: 0 0 10px 10px;" />
 
 # Deploy App using Cloud and Shiny Server
 
@@ -298,7 +298,7 @@ It can be protected by a strong security system:
 
 - IP verification and geo-restrinction
 
-<img src="vignettes/secu_biodiversity.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="600" style="padding: 0 0 10px 10px;" />
+<img src="vignettes/web_only/secu_biodiversity.png" align="center" alt="https://github.com/kmezhoud/biodiversity" width="600" style="padding: 0 0 10px 10px;" />
 
 # Mobile App
 
