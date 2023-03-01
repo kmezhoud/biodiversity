@@ -1,13 +1,13 @@
 # 2023-03-01
 
-* include pkgdown
+- include pkgdown
 
-# biodiversity 1.0.0
+# biodiversity 1.00.0
 
 ## Bug Fixes
 
-* Lots of them
+-   Lots of them
 
-# biodiversity 1.0.0
+# biodiversity 1.00.0
 
-* This is the first release of biodiversity.
+-   This is the first release of biodiversity.
