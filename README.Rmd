@@ -6,11 +6,11 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "vignettes/only_web/"
+  fig.path = "man/figures/"
 )
 ```
 
-# biodiversity Map Tracker <img src="man/figures/biodiversity.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
+# biodiversity Map Tracker <img src="man/figures/logo.png" align="right" alt="containerit logo" width="200" style="padding: 0 0 10px 10px;" />
 
 # How to install and run
 
