@@ -3,5 +3,7 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
-^vignettes/web_only
+^vignettes$
 ^\.github$
+^Dockerfile$
+^README\.Rmd$
