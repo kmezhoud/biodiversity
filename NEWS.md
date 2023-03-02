@@ -1,4 +1,5 @@
 # biodiversity 1.0.02
+HOME release: 2023-03-02
 
 ## Webpage
 
@@ -11,5 +12,6 @@
 -   Lots of them
 
 # biodiversity 1.0.0
+HOME release: 2022-02-14
 
 -   This is the first release of biodiversity.
