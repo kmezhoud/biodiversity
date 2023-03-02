@@ -1,6 +1,6 @@
 Package: biodiversity
 Title: Biodiversity Map Tracker
-Version: 1.00.0
+Version: 1.0.02
 Date: 2023-03-01
 Authors@R: person("Karim", "Mezhoud", comment = structure("0000-0003-3885-9630", .Names = "ORCID"), role=c("aut", "cre"), email="kmezhoud@gmail.com")
 Description: biodiversity is a Shiny App for tracking species on the world.
