@@ -10,10 +10,10 @@
 #' }
 #'
 #' @name biodiversity
-#' @docType package
 #' @import shiny leaflet leaflet.extras shinythemes shinydashboard
-#' @import DBI RSQLite countrycode knitr tictoc
+#' @import DBI RSQLite countrycode knitr
 #' @import tidyverse data.table memoise promises future
+#' @importFrom tictoc tic toc
 #' @importFrom utils installed.packages
 #' @rawNamespace import(geojsonio, except= c(validate))
 #' @export
